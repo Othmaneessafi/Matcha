@@ -12,7 +12,7 @@
   
   .loginImageContainer {
     background: rgb(254,107,139);
-background: linear-gradient(143deg, rgba(254,107,139,1) 0%, rgba(255,137,91,1) 100%);
+    background: linear-gradient(143deg, rgba(254,107,139,1) 0%, rgba(255,137,91,1) 100%);
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -65,10 +65,11 @@ background: linear-gradient(143deg, rgba(254,107,139,1) 0%, rgba(255,137,91,1) 1
       border-top-left-radius: 30px;
       border-top-right-radius: 30px;
       border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
     }
     
     
-    .loginImageContainer {
+    .loginInputContainer {
       border-top-right-radius: 0;
       border-bottom-right-radius: 30px;
       border-bottom-left-radius: 30px;

@@ -27,12 +27,12 @@ export default function Navbar() {
 
   return (
     <>
-      <Grid container className="container" >
+      <Grid container item sm={12} className="container" >
         <Grid item sm={12} className="navbar" container>
           <Grid
             item
             container
-            sm={2}
+            sm={1}
             className="logoContainer"
             direction="column"
             justify="center"
@@ -41,13 +41,14 @@ export default function Navbar() {
             <h1 className="logo">Matcha</h1>
           </Grid>
 
-          <Grid item sm={2}></Grid>
+          <Grid item sm={3}></Grid>
 
           <Grid
             item
             container
             sm={3}
             className="searchContainer"
+            direction="column"
             justify="center"
             alignItems="center"
           >
@@ -60,7 +61,7 @@ export default function Navbar() {
             />
           </Grid>
 
-          <Grid item sm={3}></Grid>
+          <Grid item sm={2}></Grid>
 
           <Grid item container sm={2} className="UserContainer" >
             <Grid
@@ -99,7 +100,6 @@ export default function Navbar() {
             </Grid>
           </Grid>
         </Grid>
-
         <Grid item container sm={false} className="sidebar" >
           <Grid
             item

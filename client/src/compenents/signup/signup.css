@@ -9,7 +9,8 @@
 }
 
 .imageContainer {
-  background-color: #253238;
+  background: rgb(254,107,139);
+  background: linear-gradient(143deg, rgba(254,107,139,1) 0%, rgba(255,137,91,1) 100%);
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   border-top-left-radius: 0;

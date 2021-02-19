@@ -1,0 +1,7 @@
+.BrowsingContainer {
+    position: absolute;
+    left: 200px;
+    top: 100px;
+    height: auto;
+    padding: 5px;
+}

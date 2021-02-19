@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import LoginImage from "./img/signup.svg";
+import { Link } from "react-router-dom";
 
 export default function signup() {
   return (
@@ -67,10 +68,16 @@ export default function signup() {
               />
               <div style={{ height: 30 }} />
               <Button variant="contained" color="primary" className="logupBtn">
-                Login
+                Register
               </Button>
+              <Link to="/signin">
+                <Button color="secondary" className="registerBtn">
+                  Login
+                </Button>
+              </Link>
             </Grid>
           </Grid>
+          <div style={{ height: 50 }} />
           <Grid
             item
             xs={12}
