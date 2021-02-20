@@ -1,14 +1,15 @@
 .card {
     width: 300px;
     height: 370px;
-    background: grey;
-    border-radius: 5px;
+    background: transparent;
+    border-radius: 10px;
     background-size: cover;
     background-position: center center;
     box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.5s;
     will-change: transform;
     border: 2px solid orangered;
+    padding: 2p;
     
 }
   
@@ -21,18 +22,74 @@
     text-shadow: 4px 2px 7px black;
 }
 
+
+
 .cardUsername {
-    position: relative;
-    top: 70%;
-    color: #ff5733;
+    color: white;
     text-shadow: 4px 4px 5px rgba(150, 150, 150, 1);
     font-size: 30px;
     margin-left: 5px;
 }
 
 .CardDescrtion {
-    position: relative;
-    top: 70%;
+    color: white;
     font-size: 25px;
     margin-left: 5px;
+}
+
+.cardInfos {
+    position: relative;
+    top: -25%;
+    z-index: 100;
+}
+
+.cardImage {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 9px;
+}
+
+.cardChoice {
+    position: relative;
+    width: 100%;
+    top: -24%;
+    z-index: 99;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    /* border: 1px solid yellow; */
+}
+
+.cardIcons {
+    display: none;
+    position: relative;
+    background-color: whitesmoke;
+    color: orangered;
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 0 1px 10px 0 rgba(0, 20, 20, 0.1);
+    transition: 0.2s transform;
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center; */
+    width: 40px;
+    height: 40px;
+    border: 1px solid orangered;
+}
+
+.cardIcons:hover {
+    color: black;
+    top: -5%;
+}
+
+.card:hover .cardImage{
+    height: 85%;
+    transition: height 0.5s;
+}
+.card:hover .cardIcons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: display 1s;
+
 }

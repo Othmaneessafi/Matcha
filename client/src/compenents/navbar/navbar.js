@@ -109,45 +109,67 @@ export default function Navbar() {
             alignItems="center"
           >
             <Grid item sm={12} className="emptyGrid"></Grid>
+            <Grid item container sm={1} ></Grid>
             <Grid
               item
               container
-              sm={9}
+              sm={2}
               className="sideBrowsing"
               direction="column"
               justify="center"
               alignItems="center"
             >
               <FavoriteIcon />
-              <h2 className="sideNames">Browsing</h2>
             </Grid>
-            <Divider className="divider" light />
+            <Grid item container sm={1} ></Grid>
             <Grid
               item
               container
-              sm={8}
+              sm={7}
+              className="sideBrowsing"
+              direction="column"
+              justify="center"
+              alignItems="center"
+            >
+              <h2 className="sideNames">Browsing</h2>
+            </Grid>
+            <Divider className="divider" light />
+            <Grid item container sm={1} ></Grid>
+            <Grid
+              item
+              container
+              sm={2}
               className="sideBrowsing"
               direction="column"
               justify="center"
               alignItems="center"
             >
               <AccountCircleIcon />
-              <h2 className="sideNames">Profile</h2>
             </Grid>
-            <Divider className="divider" light />
             <Grid
               item
               container
               sm={8}
+              className="sideBrowsing"
+              direction="column"
+              justify="center"
+              alignItems="center"
+            >
+              <h2 className="sideNames">Profile</h2>
+            </Grid>
+            <Divider className="divider" light />
+            <Grid item container sm={1} ></Grid>
+            <Grid
+              item
+              container
+              sm={2}
               className="sideBrowsing"
               direction="column"
               justify="center"
               alignItems="center"
             >
               <HistoryIcon />
-              <h2 className="sideNames">Activity</h2>
             </Grid>
-            <Divider className="divider" light />
             <Grid
               item
               container
@@ -157,7 +179,30 @@ export default function Navbar() {
               justify="center"
               alignItems="center"
             >
+              <h2 className="sideNames">Activity</h2>
+            </Grid>
+            <Divider className="divider" light />
+            <Grid item container sm={1} ></Grid>
+            <Grid
+              item
+              container
+              sm={2}
+              className="sideBrowsing"
+              direction="column"
+              justify="center"
+              alignItems="center"
+            >
               <ChatIcon />
+            </Grid>
+            <Grid
+              item
+              container
+              sm={8}
+              className="sideBrowsing"
+              direction="column"
+              justify="center"
+              alignItems="center"
+            >
               <h2 className="sideNames">Friends</h2>
             </Grid>
           </Grid>
