@@ -3,17 +3,28 @@ import { useSpring, animated } from "react-spring";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import BlockIcon from "@material-ui/icons/Block";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import StarIcon from '@material-ui/icons/Star';
 import "./Cards.css";
 import { Grid } from "@material-ui/core";
 
 const calc = (x, y) => [0, 0, 1.1];
 const trans = (x, y, s) => ` scale(${s})`;
 
+const capitalize = (str) =>{
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export default function Cards({ image }) {
   const [props, set] = useSpring(() => ({
     xys: [0, 0, 1],
     config: { mass: 5, tension: 150, friction: 50 },
   }));
+
+  const stars = [];
+  for (let i = 0; i < image.rating; i++) {
+    stars.push(<StarIcon key={i} />); 
+  }
+ 
   return (
     <animated.div
       className="card"
@@ -21,14 +32,13 @@ export default function Cards({ image }) {
       onMouseLeave={() => set({ xys: [0, 0, 1] })}
       style={{
         transform: props.xys.interpolate(trans),
-        // backgroundImage: `url(${image})`,
         margin: 10,
       }}
     >
-      <img src={image} alt="image" className="cardImage shadow" />
+      <img src={image.path} alt="image" className="cardImage shadow" />
       <div className="cardInfos">
-        <h1 className="cardUsername">Username, Age</h1>
-        <p className="CardDescrtion">Tags</p>
+        <h1 className="cardUsername">{capitalize(image.username)}, {image.age}</h1>
+        <div className="CardDescrtion">{stars}</div>
       </div>
       <Grid container className="cardChoice">
         <Grid
