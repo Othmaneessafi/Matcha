@@ -1,0 +1,28 @@
+
+.stepperContainer {
+  background-color: transparent!important;
+  /* border: 2px solid yellow; */
+  /* color: red; */
+}
+.profileContainer {
+  width: 100vw!important;
+  height: 100vh;
+}
+
+.finish {
+  background-color: transparent!important;
+}
+
+.infosContainer {
+  width: 90vw;
+  height: 70vh;
+  padding: 5%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.infosInputs {
+  width: 90%!important;
+  color: orangered;
+}

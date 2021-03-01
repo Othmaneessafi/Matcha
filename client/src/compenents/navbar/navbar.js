@@ -27,7 +27,7 @@ export default function Navbar() {
 
   return (
     <>
-      <Grid container item sm={12} className="container" >
+      <Grid container item sm={12} className="navbarContainer" >
         <Grid item sm={12} className="navbar" container>
           <Grid
             item

@@ -103,7 +103,7 @@
   cursor: pointer;
 }
 
-.container {
+.navbarContainer {
   display: flex;
   height: 100%!important;
   padding: 0;

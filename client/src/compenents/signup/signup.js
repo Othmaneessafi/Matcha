@@ -11,7 +11,7 @@ export default function signup() {
     <>
       <Grid
         container
-        className="container"
+        className="signupContainer"
         justify="center"
         alignItems="center"
       >

@@ -4,7 +4,7 @@ import Navbar from "../navbar/navbar";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Button from '@material-ui/core/Button'
+import Button from "@material-ui/core/Button";
 import Axios from "axios";
 import "./browsing.css";
 
@@ -27,28 +27,48 @@ export default function Browsing() {
   // ];
 
   const [imgs, setImgs] = useState([]);
+  const [rating, setRating] = useState(1);
+  const [age, setAge] = useState(20);
+
+  const handleRatingChange = (e, newRating) => {
+    setRating(newRating);
+    return newRating;
+  };
+  const handleAgeChange = (e, newAge) => {
+    setAge(newAge);
+    return newAge;
+  };
+
+  const filter = (img) => {
+    if (img.rating >= rating && img.age >= age)
+      return img;
+  }
 
   useEffect(() => {
-    Axios.get('http://localhost:3001/browsing').then((response) =>{
+    Axios.get("http://localhost:3001/browsing").then((response) => {
       setImgs(response.data);
-    })
-  }, [])
-
+    });
+  }, []);
 
   return (
     <>
       <Navbar />
       <Grid container className="BrowsingContainer">
         <Grid item container sm={10} className="filter" spacing={0}>
-          <Grid item  sm={3}>
-            <Typography id="discrete-slider" gutterBottom style={{color: "red"}}>
+          <Grid item sm={3}>
+            <Typography
+              id="discrete-slider"
+              gutterBottom
+              style={{ color: "red" }}
+            >
               Rating
             </Typography>
             <Slider
-              defaultValue={30}
+              value={rating}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
+              onChange={handleRatingChange}
               step={1}
               marks
               min={1}
@@ -58,28 +78,37 @@ export default function Browsing() {
             />
           </Grid>
           <Grid item sm={3}>
-            <Typography id="discrete-slider" gutterBottom style={{color: "red"}}>
+            <Typography
+              id="discrete-slider"
+              gutterBottom
+              style={{ color: "red" }}
+            >
               Age
             </Typography>
             <Slider
-              defaultValue={30}
+              Value={age}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
-              step={5}
+              onChange={handleAgeChange}
+              step={1}
               marks
-              min={20}
+              min={18}
               max={70}
               color="secondary"
               style={{ width: 300 }}
             />
           </Grid>
           <Grid item sm={3}>
-            <Typography id="discrete-slider" gutterBottom style={{color: "red"}}>
+            <Typography
+              id="discrete-slider"
+              gutterBottom
+              style={{ color: "red" }}
+            >
               Localisation
             </Typography>
             <Slider
-              defaultValue={30}
+              defaultValue={10}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
@@ -89,13 +118,18 @@ export default function Browsing() {
               max={100}
               color="secondary"
               style={{ width: 300 }}
-            /></Grid>
+            />
+          </Grid>
           <Grid item sm={3}>
-            <Typography id="discrete-slider" gutterBottom style={{color: "red"}}>
+            <Typography
+              id="discrete-slider"
+              gutterBottom
+              style={{ color: "red" }}
+            >
               Tags
             </Typography>
             <Slider
-              defaultValue={30}
+              defaultValue={10}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
@@ -104,16 +138,17 @@ export default function Browsing() {
               min={1}
               max={10}
               color="secondary"
-              
             />
           </Grid>
-          <Button variant="contained" color="secondary" >Filter</Button>
         </Grid>
         <Grid item sm={12} style={{ height: 50 }}></Grid>
         <Grid item container sm={12}>
-          {imgs.map((img, i) => (
-            <Cards image={img} key={i} />
-          ))};
+          {imgs
+            .filter(filter)
+            .map((img, i) => (
+              <Cards image={img} key={i} rating={rating} />
+            ))}
+          ;
         </Grid>
       </Grid>
     </>
