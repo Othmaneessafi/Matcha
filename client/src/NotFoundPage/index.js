@@ -2,7 +2,7 @@ import React from "react";
 import "./index.css";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import notFoundImage from "./img/notFound.svg";
+import notFoundImage from "./img/404.svg";
 import { Link } from "react-router-dom";
 
 export default function notFound(props) {

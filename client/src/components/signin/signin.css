@@ -1,5 +1,3 @@
-.body {
-}
 
 .signinContainer {
   height: 100vh;
@@ -7,8 +5,18 @@
 
 .loginContainer {
   border-radius: 30px;
-  height: 50vh;
+  height: 50vh!important;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  animation: slideRight 0.8s;
+}
+
+@keyframes slideRight {
+  from {
+    margin-left: 200px;
+  }
+  to {
+    margin-left: 0;
+  }
 }
 
 .loginImageContainer {
@@ -17,10 +25,10 @@
     143deg,
     rgba(254, 107, 139, 1) 0%,
     rgba(255, 137, 91, 1) 100%
-  );
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    );
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 .loginInputContainer {
@@ -37,8 +45,18 @@
 }
 
 .loginImage {
-  width: 70%;
+  /* width: 70%!important; */
   height: auto;
+  animation: fading 3s;
+}
+
+@keyframes fading {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .loginInput {

@@ -2,7 +2,7 @@ import React from "react";
 import "./signup.css";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import LoginImage from "./img/signup.svg";
+import LogupImage from "./img/signup.svg";
 import { Link } from "react-router-dom";
 import { Field } from 'redux-form';
 import renderField from '../commun/TextField';
@@ -105,7 +105,7 @@ export default function signup(props) {
             justify="center"
             alignItems="center"
           >
-            <img src={LoginImage} alt="logup" className="logupImage" />
+            <img src={LogupImage} alt="logup" className="logupImage" />
           </Grid>
         </Grid>
       </Grid>
