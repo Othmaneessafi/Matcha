@@ -7,6 +7,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
+import { makeStyles } from "@material-ui/core/styles";
 
 const tags = [
   {
@@ -23,15 +24,25 @@ const tags = [
   },
 ];
 
+const useStyles = makeStyles({
+  root: {
+    "&:not(.Mui-disabled)::before": {
+      borderColor: "grey",
+    },
+  },
+});
+
 export default function Infos() {
-  const [value, setValue] = React.useState("female");
+  const classes = useStyles();
+  const [valueGender, setGenderValue] = React.useState("female");
+  const [valueInter, setInterValue] = React.useState("men");
 
   const handleGenderChange = (event) => {
-    setValue(event.target.value);
+    setGenderValue(event.target.value);
   };
 
   const handleInterestedChange = (event) => {
-    setValue(event.target.value);
+    setInterValue(event.target.value);
   };
 
   const [tag, setTag] = React.useState("none");
@@ -41,13 +52,18 @@ export default function Infos() {
   };
   return (
     <div className="infosContainer">
-      <Grid container spacing={4}>
+      <Grid container spacing={3}>
         <Grid item container sm={12}>
           <Grid item sm={6}>
             <TextField
               label="First Name"
               color="secondary"
-              className="infosInputs"
+              InputProps={{
+                classes: {
+                  root: classes.root,
+                },
+              }}
+              InputLabelProps={{ className: "loginInputLabel" }}
             />
           </Grid>
           <Grid item sm={6}>
@@ -55,6 +71,10 @@ export default function Infos() {
               label="Last Name"
               color="secondary"
               className="infosInputs"
+              InputProps={{  classes: {
+                root: classes.root,
+              }, }}
+              InputLabelProps={{ className: "loginInputLabel" }}
             />
           </Grid>
         </Grid>
@@ -64,65 +84,96 @@ export default function Infos() {
               label="Username"
               color="secondary"
               className="infosInputs"
+              InputProps={{  classes: {
+                root: classes.root,
+              }, }}
+              InputLabelProps={{ className: "loginInputLabel" }}
             />
           </Grid>
           <Grid item sm={6}>
             <TextField
               label="Email"
               color="secondary"
+              InputProps={{  classes: {
+                root: classes.root,
+              }, }}
+              InputLabelProps={{ className: "loginInputLabel" }}
               className="infosInputs"
             />
           </Grid>
         </Grid>
         <Grid item container sm={12}>
-          <TextField label="Bio" color="secondary" className="infosInputs" />
+          <TextField
+            label="Bio"
+            color="secondary"
+            className="infosInputs"
+            InputProps={{  classes: {
+              root: classes.root,
+            }, }}
+            InputLabelProps={{ className: "loginInputLabel" }}
+            fullWidth
+          />
         </Grid>
 
         <Grid item container sm={12}>
           <Grid item sm={4}>
             <FormControl>
-              <FormLabel color="secondary">Gender</FormLabel>
+              <FormLabel color="secondary" style={{ color: "grey" }}>
+                Gender
+              </FormLabel>
               <RadioGroup
                 aria-label="gender"
-                value={value}
+                value={valueGender}
                 onChange={handleGenderChange}
               >
                 <FormControlLabel
                   value="female"
                   control={<Radio />}
                   label="Female"
+                  style={{ color: "darkgrey" }}
                 />
                 <FormControlLabel
                   value="male"
                   control={<Radio />}
                   label="Male"
+                  style={{ color: "darkgrey" }}
                 />
                 <FormControlLabel
                   value="other"
                   control={<Radio />}
                   label="Other"
+                  style={{ color: "darkgrey" }}
                 />
               </RadioGroup>
             </FormControl>
           </Grid>
           <Grid item sm={4}>
             <FormControl>
-              <FormLabel color="secondary">Interested In</FormLabel>
+              <FormLabel color="secondary" style={{ color: "grey" }}>
+                Interested In
+              </FormLabel>
               <RadioGroup
                 aria-label="interested"
-                value={value}
+                value={valueInter}
                 onChange={handleInterestedChange}
               >
-                <FormControlLabel value="men" control={<Radio />} label="Men" />
+                <FormControlLabel
+                  value="men"
+                  control={<Radio />}
+                  label="Men"
+                  style={{ color: "darkgrey" }}
+                />
                 <FormControlLabel
                   value="women"
                   control={<Radio />}
                   label="Women"
+                  style={{ color: "darkgrey" }}
                 />
                 <FormControlLabel
                   value="both"
                   control={<Radio />}
                   label="Both"
+                  style={{ color: "darkgrey" }}
                 />
               </RadioGroup>
             </FormControl>
@@ -137,6 +188,7 @@ export default function Infos() {
                 color="secondary"
                 InputLabelProps={{
                   shrink: true,
+                  className: "loginInputLabel",
                 }}
               />
             </Grid>
@@ -147,8 +199,12 @@ export default function Infos() {
                 label="Tags"
                 value={tag}
                 onChange={handleTagChange}
-                helperText="Please select at least 3 tags"
+                helperText={<label style={{color: 'grey'}}>Please select at least 3 tags</label>}
                 color="secondary"
+                InputProps={{  classes: {
+                  root: classes.root,
+                }, }}
+                InputLabelProps={{ className: "loginInputLabel" }}
               >
                 {tags.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -159,21 +215,30 @@ export default function Infos() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item sm={6} >
-        <TextField
-          label="New Password"
-          type="password"
-          color="secondary"
-          className="infosInputs"
-        />
+        <Grid item sm={6}>
+          <TextField
+            label="New Password"
+            type="password"
+            color="secondary"
+            InputProps={{  classes: {
+              root: classes.root,
+            }, }}
+            InputLabelProps={{ className: "loginInputLabel" }}
+            className="infosInputs"
+          />
         </Grid>
-        <Grid item sm={6} >
-        <TextField
-          label="Confirm New Password"
-          type="password"
-          color="secondary"
-          className="infosInputs"
-        /></Grid>
+        <Grid item sm={6}>
+          <TextField
+            label="Confirm New Password"
+            type="password"
+            color="secondary"
+            InputProps={{  classes: {
+              root: classes.root,
+            }, }}
+            InputLabelProps={{ className: "loginInputLabel" }}
+            className="infosInputs"
+          />
+        </Grid>
       </Grid>
     </div>
   );
