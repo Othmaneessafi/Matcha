@@ -55,13 +55,6 @@
       color: lightgrey;
       margin: 50px;
   }
-
-  .logupInputLabel {
-    color: grey !important;
-  }
-  .logupInput {
-    color: aliceblue !important;
-  }
   
   @media screen and (max-width: 1280px) {
     .imageContainer {
