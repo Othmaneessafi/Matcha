@@ -13,6 +13,17 @@ module.exports = {
             }
         });
     },
+
+    updateUser: function (first_name, last_name, id) {
+        return new Promise((resolve, reject) => {
+            con.query(UPDATE.UpdateInfos, [first_name, last_name, id], (err, res) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(res);
+            });
+        })
+    },
     getUser:  function (type, value) {
         return new Promise((resolve, reject) => {
             con.query(SELECT[type], value, (err, res) => {
