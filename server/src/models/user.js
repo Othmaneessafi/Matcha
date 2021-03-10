@@ -14,9 +14,9 @@ module.exports = {
         });
     },
 
-    updateUser: function (first_name, last_name, id) {
+    updateUser: function (first_name, last_name, bio, birth,gender, intrest,  id) {
         return new Promise((resolve, reject) => {
-            con.query(UPDATE.UpdateInfos, [first_name, last_name, id], (err, res) => {
+            con.query(UPDATE.UpdateInfos, [first_name, last_name, bio, birth, gender, intrest, id], (err, res) => {
                 if (err)
                     reject(err);
                 else

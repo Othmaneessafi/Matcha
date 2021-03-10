@@ -2,12 +2,13 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import RadioGroup from "../commun/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import { makeStyles } from "@material-ui/core/styles";
+import { Field } from 'redux-form';
+import renderField from '../commun/TextField'; 
+
 
 const tags = [
   {
@@ -34,16 +35,16 @@ const useStyles = makeStyles({
 
 export default function Infos() {
   const classes = useStyles();
-  const [valueGender, setGenderValue] = React.useState("female");
-  const [valueInter, setInterValue] = React.useState("men");
+  // const [valueGender, setGenderValue] = React.useState("female");
+  // const [valueInter, setInterValue] = React.useState("men");
 
-  const handleGenderChange = (event) => {
-    setGenderValue(event.target.value);
-  };
+  // const handleGenderChange = (event) => {
+  //   setGenderValue(event.target.value);
+  // };
 
-  const handleInterestedChange = (event) => {
-    setInterValue(event.target.value);
-  };
+  // const handleInterestedChange = (event) => {
+  //   setInterValue(event.target.value);
+  // };
 
   const [tag, setTag] = React.useState("none");
 
@@ -55,9 +56,11 @@ export default function Infos() {
       <Grid container spacing={3}>
         <Grid item container sm={12}>
           <Grid item sm={6}>
-            <TextField
+            <Field
+              name = "first_name"
               label="First Name"
               color="secondary"
+              component={renderField}
               InputProps={{
                 classes: {
                   root: classes.root,
@@ -67,52 +70,33 @@ export default function Infos() {
             />
           </Grid>
           <Grid item sm={6}>
-            <TextField
+          <Field
+              name = "last_name"
               label="Last Name"
               color="secondary"
-              className="infosInputs"
-              InputProps={{  classes: {
-                root: classes.root,
-              }, }}
+              component={renderField}
+              InputProps={{
+                classes: {
+                  root: classes.root,
+                },
+              }}
               InputLabelProps={{ className: "loginInputLabel" }}
             />
           </Grid>
         </Grid>
         <Grid item container sm={12}>
-          <Grid item sm={6}>
-            <TextField
-              label="Username"
+        <Field
+              name = "bio"
+              label="Bio"
               color="secondary"
-              className="infosInputs"
-              InputProps={{  classes: {
-                root: classes.root,
-              }, }}
+              component={renderField}
+              InputProps={{
+                classes: {
+                  root: classes.root,
+                },
+              }}
               InputLabelProps={{ className: "loginInputLabel" }}
             />
-          </Grid>
-          <Grid item sm={6}>
-            <TextField
-              label="Email"
-              color="secondary"
-              InputProps={{  classes: {
-                root: classes.root,
-              }, }}
-              InputLabelProps={{ className: "loginInputLabel" }}
-              className="infosInputs"
-            />
-          </Grid>
-        </Grid>
-        <Grid item container sm={12}>
-          <TextField
-            label="Bio"
-            color="secondary"
-            className="infosInputs"
-            InputProps={{  classes: {
-              root: classes.root,
-            }, }}
-            InputLabelProps={{ className: "loginInputLabel" }}
-            fullWidth
-          />
         </Grid>
 
         <Grid item container sm={12}>
@@ -121,30 +105,13 @@ export default function Infos() {
               <FormLabel color="secondary" style={{ color: "grey" }}>
                 Gender
               </FormLabel>
-              <RadioGroup
-                aria-label="gender"
-                value={valueGender}
-                onChange={handleGenderChange}
-              >
-                <FormControlLabel
-                  value="female"
-                  control={<Radio />}
-                  label="Female"
-                  style={{ color: "darkgrey" }}
+              <Field component ={RadioGroup} name = "gender" options={[
+                    { title:  'Men ' , value: 'men'  },
+                    { title:  'Women', value: 'women'},
+                    { title:  'Both' , value: 'both' }
+                  ]}
                 />
-                <FormControlLabel
-                  value="male"
-                  control={<Radio />}
-                  label="Male"
-                  style={{ color: "darkgrey" }}
-                />
-                <FormControlLabel
-                  value="other"
-                  control={<Radio />}
-                  label="Other"
-                  style={{ color: "darkgrey" }}
-                />
-              </RadioGroup>
+
             </FormControl>
           </Grid>
           <Grid item sm={4}>
@@ -152,39 +119,22 @@ export default function Infos() {
               <FormLabel color="secondary" style={{ color: "grey" }}>
                 Interested In
               </FormLabel>
-              <RadioGroup
-                aria-label="interested"
-                value={valueInter}
-                onChange={handleInterestedChange}
-              >
-                <FormControlLabel
-                  value="men"
-                  control={<Radio />}
-                  label="Men"
-                  style={{ color: "darkgrey" }}
+              <Field component ={RadioGroup} name = "intrest" options={[
+                    { title:  'Men ' , value: 'men'  },
+                    { title:  'Women', value: 'women'},
+                    { title:  'Both' , value: 'both' }
+                  ]}
                 />
-                <FormControlLabel
-                  value="women"
-                  control={<Radio />}
-                  label="Women"
-                  style={{ color: "darkgrey" }}
-                />
-                <FormControlLabel
-                  value="both"
-                  control={<Radio />}
-                  label="Both"
-                  style={{ color: "darkgrey" }}
-                />
-              </RadioGroup>
             </FormControl>
           </Grid>
           <Grid item container sm={4}>
             <Grid item sm={12}>
-              <TextField
+              <Field
                 id="date"
                 label="Birthday"
+                name="birth"
                 type="date"
-                defaultValue="2017-05-24"
+                component={renderField}
                 color="secondary"
                 InputLabelProps={{
                   shrink: true,
@@ -214,30 +164,6 @@ export default function Infos() {
               </TextField>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item sm={6}>
-          <TextField
-            label="New Password"
-            type="password"
-            color="secondary"
-            InputProps={{  classes: {
-              root: classes.root,
-            }, }}
-            InputLabelProps={{ className: "loginInputLabel" }}
-            className="infosInputs"
-          />
-        </Grid>
-        <Grid item sm={6}>
-          <TextField
-            label="Confirm New Password"
-            type="password"
-            color="secondary"
-            InputProps={{  classes: {
-              root: classes.root,
-            }, }}
-            InputLabelProps={{ className: "loginInputLabel" }}
-            className="infosInputs"
-          />
         </Grid>
       </Grid>
     </div>
