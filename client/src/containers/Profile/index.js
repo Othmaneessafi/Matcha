@@ -9,7 +9,10 @@ const validate = (values) => {
     const requiredFields = [
         'first_name',
         'last_name',
-        'tags',
+        'bio',
+        'birth',
+        'gender',
+        'intrest',
     ];
 
     requiredFields.forEach(field => {
@@ -43,9 +46,10 @@ const validate = (values) => {
 const mapStateToProps = (state) => (
 {
     "form" : state.form,
-    "status" : state.infos.infosStatus,
-    "err": state.infos.error
+    "status" : state.infos.status,
+    "error": state.infos.error
 });
+
 const mapDispatchToProps = {
     "infosAction": InfosAction
 };
@@ -55,14 +59,15 @@ const mergeProps = (stateProps, dispatchProps, otherProps)=> ({
     ...otherProps,
     "handleSubmit" : otherProps.handleSubmit((form)=>{
         dispatchProps.infosAction(form);
+        console.log(form)
     })
 });
 
-const connectedInfosContainer = connect(mapStateToProps, mapDispatchToProps,mergeProps)(Profile);
-const InfosContainer = reduxForm({
-    form : "infos",
+const connectedProfileContainer = connect(mapStateToProps, mapDispatchToProps,mergeProps)(Profile);
+const ProfileContainer = reduxForm({
+    form : "profile",
     "destroyOnUnmount": true,  
     validate,
-})(connectedInfosContainer);
+})(connectedProfileContainer);
 
-export default InfosContainer;
+export default ProfileContainer;
