@@ -16,8 +16,7 @@ const queries = {
         non_verif: 'UPDATE users SET verification = 0 WHERE email = ?',
         UpdateOnline: "UPDATE users SET online = 1 ,last_signin = null WHERE id = ?",
         UpdateOffline: "UPDATE users SET online = 0 ,last_signin = NOW() WHERE id = ?",
-        UpdateInfos: "UPDATE users SET first_name = ? , last_name = ? WHERE id = ?",
+        UpdateInfos: "UPDATE users SET first_name = ? , last_name = ? , bio = ?, birth_date = ?, gender = ?, intrest = ? WHERE id = ?",
     },
 }
-
 module.exports = queries;
