@@ -5,7 +5,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import Infos from "./infos";
+import Infos from "./infos"
 import Photos from "./photos";
 import Localisation from "./Localisation";
 import "./profile.css";
@@ -30,6 +30,9 @@ function getStepContent(step) {
 }
 
 export default function Profile(props) {
+  
+  const {handleSubmit} = props;
+
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
@@ -112,6 +115,7 @@ export default function Profile(props) {
                 </Grid>
                 <Grid container item sm={6} justify="center"
                 alignItems="center">
+         
                   <Button
                     color="secondary"
                     disabled={activeStep === 0}
@@ -126,16 +130,19 @@ export default function Profile(props) {
                     onClick={handleNext}
                     className="profileBtn"
                   >
+             
                     {activeStep === steps.length - 1 ? "Finish" : "Next"}
                     <ArrowForwardIosIcon className="forward" />
                   </Button>
+                  <Button variant="contained" color="primary" className="loginBtn" type="submit" value="ok" onClick={handleSubmit}>
+                save
+        </Button>
                 </Grid>
               </Grid>
             )}
           </Grid>
         </Grid>
       </Grid>
-
       <div className="profileContainer">
         {activeStep === steps.length && (
           <Paper square elevation={0} className="finish">
