@@ -1,13 +1,15 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import MenuItem from "@material-ui/core/MenuItem";
 import RadioGroup from "../commun/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import { makeStyles } from "@material-ui/core/styles";
 import { Field } from 'redux-form';
-import renderField from '../commun/TextField'; 
+import renderField from '../commun/TextField';
+import InputAdornment from "@material-ui/core/InputAdornment";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 
 const useStyles = makeStyles({
