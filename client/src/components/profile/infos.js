@@ -48,10 +48,10 @@ export default function Infos() {
   };
   
   return (
-    <div className="infosContainer">
-      <Grid container spacing={3}>
+    <div className="infosContainer" >
+      <Grid container spacing={10}>
         <Grid item container sm={12}>
-          <Grid item sm={6}>
+          <Grid item sm={5}>
             <Field
               name = "first_name"
               label="First Name"
@@ -65,7 +65,8 @@ export default function Infos() {
               InputLabelProps={{ className: "loginInputLabel" }}
             />
           </Grid>
-          <Grid item sm={6}>
+          <Grid item sm={2} />
+          <Grid item sm={5}>
           <Field
               name = "last_name"
               label="Last Name"
@@ -118,7 +119,7 @@ export default function Infos() {
               <Field component ={RadioGroup} name = "intrest" options={[
                     { title:  'Men ' , value: 'men'  },
                     { title:  'Women', value: 'women'},
-                    { title:  'Both' , value: 'both' }
+                    { title:  'Miiw' , value: 'miiw' }
                   ]}
                 />
             </FormControl>
