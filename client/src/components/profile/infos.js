@@ -10,21 +10,6 @@ import { Field } from 'redux-form';
 import renderField from '../commun/TextField'; 
 
 
-const tags = [
-  {
-    value: "Travel",
-  },
-  {
-    value: "Sport",
-  },
-  {
-    value: "Dev",
-  },
-  {
-    value: "1337",
-  },
-];
-
 const useStyles = makeStyles({
   root: {
     "&:not(.Mui-disabled)::before": {
@@ -33,24 +18,33 @@ const useStyles = makeStyles({
   },
 });
 
+
 export default function Infos() {
   const classes = useStyles();
-  // const [valueGender, setGenderValue] = React.useState("female");
-  // const [valueInter, setInterValue] = React.useState("men");
+    const [tags, setTag] = React.useState([]);
+  const [tagvalue, setTagValue] = React.useState("");
 
-  // const handleGenderChange = (event) => {
-  //   setGenderValue(event.target.value);
-  // };
-
-  // const handleInterestedChange = (event) => {
-  //   setInterValue(event.target.value);
-  // };
-
-  const [tag, setTag] = React.useState("none");
-
-  const handleTagChange = (event) => {
-    setTag(event.target.value);
+  const handleTagChange = (e) => {
+    setTagValue(e.target.value);
   };
+
+  const handleDeleteTag = (e) => {
+    console.log(tags[e.target.id].id);
+    setTag(tags.filter(tg => tg.id !== tags[e.target.id].id));
+  };
+
+  const handleTagAdd = (e) => {
+    if (tagvalue !== "" && tags.length < 5) {
+      setTag([
+        ...tags,
+        {
+          id: tags.length,
+          name: tagvalue,
+        },
+      ]);
+    }
+  };
+  
   return (
     <div className="infosContainer">
       <Grid container spacing={3}>
@@ -143,26 +137,53 @@ export default function Infos() {
               />
             </Grid>
             <Grid item sm={12}>
-              <TextField
-                id="standard-select-currency"
-                select
-                label="Tags"
-                value={tag}
-                onChange={handleTagChange}
-                helperText={<label style={{color: 'grey'}}>Please select at least 3 tags</label>}
-                color="secondary"
-                InputProps={{  classes: {
+            <TextField
+              label="Tags"
+              color="secondary"
+              className="infosInputs"
+              onChange={handleTagChange}
+              InputProps={{
+                classes: {
                   root: classes.root,
-                }, }}
-                InputLabelProps={{ className: "loginInputLabel" }}
-              >
-                {tags.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.value}
-                  </MenuItem>
-                ))}
-              </TextField>
+                },
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CheckCircleIcon
+                      className="tagIcon"
+                      onClick={handleTagAdd}
+                    />
+                  </InputAdornment>
+                ),
+              }}
+              InputLabelProps={{ className: "loginInputLabel" }}
+              fullWidth
+            />
+            <Grid
+              item
+              container
+              sm={12}
+              justify="center"
+              alignItems="center"
+              className="tagsCont"
+            >
+              {tags.map((tag, index) => (
+                <Grid
+                  item
+                  container
+                  key={index}
+                  justify="center"
+                  alignItems="center"
+                  sm={4}
+                  className="tagsField"
+                >
+                  <Grid item sm={9}>{tag.name}</Grid>
+                  <Grid item sm={3}><HighlightOffIcon className="deleteTagBtn" id={tag.id} onClick={handleDeleteTag} /></Grid>
+                  
+                  
+                </Grid>
+              ))}
             </Grid>
+          </Grid>
           </Grid>
         </Grid>
       </Grid>
