@@ -5,12 +5,12 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import Infos from "./infos"
+import Infos from "./infos";
 import Photos from "./photos";
 import Localisation from "./Localisation";
 import "./profile.css";
 import Grid from "@material-ui/core/Grid";
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 function getSteps() {
   return ["Information", "Photos", "Localisation"];
@@ -30,8 +30,7 @@ function getStepContent(step) {
 }
 
 export default function Profile(props) {
-  
-  const {handleSubmit} = props;
+  const { handleSubmit } = props;
 
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -113,30 +112,47 @@ export default function Profile(props) {
                 >
                   {getStepContent(activeStep)}
                 </Grid>
-                <Grid container item sm={6} justify="center"
-                alignItems="center">
-         
-                  <Button
-                    color="secondary"
-                    disabled={activeStep === 0}
-                    onClick={handleBack}
-                    style={{color: "#C51162"}}
-                  >
-                    Back
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={handleNext}
-                    className="profileBtn"
-                  >
-             
-                    {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                    <ArrowForwardIosIcon className="forward" />
-                  </Button>
-                  <Button variant="contained" color="primary" className="loginBtn" type="submit" value="ok" onClick={handleSubmit}>
-                save
-        </Button>
+                <Grid
+                  container
+                  item
+                  sm={6}
+                  justify="center"
+                  alignItems="center"
+                  spacing={2}
+                >
+                  <Grid item sm={2}>
+                    <Button
+                      color="secondary"
+                      disabled={activeStep === 0}
+                      onClick={handleBack}
+                      style={{ color: "#C51162" }}
+                    >
+                      Back
+                    </Button>
+                  </Grid>
+                  <Grid item sm={4}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className="loginBtn"
+                      type="submit"
+                      value="ok"
+                      onClick={handleSubmit}
+                    >
+                      save
+                    </Button>
+                  </Grid>
+                  <Grid item sm={6}>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={handleNext}
+                      className="profileBtn"
+                    >
+                      {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                      <ArrowForwardIosIcon className="forward" />
+                    </Button>
+                  </Grid>
                 </Grid>
               </Grid>
             )}
