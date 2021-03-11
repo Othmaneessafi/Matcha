@@ -5,23 +5,25 @@ import {updateUserSuccess} from '../actions/userAction'
 import { request } from './helper';
 
 const Profile =
-  function *Profile({ data }) {
+  function *Profile({ data }) {   
     try {
       const id = yield select((state) => state.user.id);
-      const username = data.username;
       const first_name = data.first_name;
       const last_name = data.last_name;
-      const email = data.p_email;
-      const password = data.pass;
+      const bio = data.bio;
+      const birth = data.birth;
+      const gender = data.gender;
+      const intrest = data.intrest;
       const response = yield call(request, {
         "url": "http://localhost:3001/profile",
         "data": {
           id,
-          username,
           first_name,
           last_name,
-          email,
-          password
+          bio,
+          birth,
+          intrest,
+          gender
         },
         "method": "post"
       });
@@ -30,7 +32,7 @@ const Profile =
         const  user = response.data.user;
         yield put(infosUserSuccess());
         yield put(updateUserSuccess(user));
-        yield put(push("/profile"));
+        yield put(push("/browsing"));
       }
       else {
         yield put(infosErrorField(response.data.errorField))
