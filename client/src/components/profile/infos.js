@@ -32,6 +32,7 @@ export default function Infos() {
 
   const handleDeleteTag = (e) => {
     console.log(tags[e.target.id].id);
+    console.log(tags);
     setTag(tags.filter(tg => tg.id !== tags[e.target.id].id));
   };
 

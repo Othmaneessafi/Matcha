@@ -42,11 +42,15 @@
 }
 
 .logupImage {
-  width: 90%!important;
+  width: 60%;
   height: auto;
-  animation: fading 3s;
+  animation: fadeIn 1s;
+  transition: width 1s;
 }
 
+.imageContainer:hover .logupImage{
+  width: 90%;
+}
 
 .logupInput {
   color: white;

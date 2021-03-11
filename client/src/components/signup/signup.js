@@ -2,7 +2,7 @@ import React from "react";
 import "./signup.css";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import LogupImage from "./img/signup.svg";
+import LogupImage from "./img/loving.svg";
 import { Link } from "react-router-dom";
 import { Field } from 'redux-form';
 import renderField from '../commun/TextField';

@@ -22,7 +22,7 @@ const login =
         const  user = response.data.user;
         yield put(loginUserSuccess());
         yield put(updateUserSuccess(user));
-        yield put(push("/browsing"));
+        yield put(push("/profile"));
       }
       else {
         yield put(loginErrorField(response.data.errorField))

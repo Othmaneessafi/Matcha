@@ -45,19 +45,26 @@
 }
 
 .loginImage {
-  /* width: 70%!important; */
+  width: 70%;
   height: auto;
-  animation: fading 3s;
+  animation: fadeIn 1s;
+  transition: width 1s;
 }
 
-@keyframes fading {
+.loginImageContainer:hover .loginImage{
+  width: 90%;
+}
+
+@keyframes fadeIn {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
+
 
 .loginInput {
   color: white;
