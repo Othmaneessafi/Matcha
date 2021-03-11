@@ -4,7 +4,7 @@ import {Route, Switch} from 'react-router-dom';
 import RegisterUser from '../containers/Register';
 import loginUser from '../containers/Login';
 import Browser from '../components/browsing/browsing';
-import Profile from '../components/profile/profile';
+import Profile from '../containers/Profile';
 import confirme from '../containers/emailConfirmation';
 import NotFoundPage from '../NotFoundPage';
 import ResetPassword from '../containers/resetP';
