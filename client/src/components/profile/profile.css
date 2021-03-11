@@ -53,13 +53,52 @@
   border-bottom-right-radius: 30px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  padding: 15px;
+  padding: 1px;
+}
+
+.infosContainer {
+  margin-bottom: 2vh!important;
+  height: 45vh;
 }
 
 .profileImage {
   /* width: 70%!important; */
   height: auto;
   animation: fading 3s;
+}
+
+.tagsField {
+  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  color: white;
+  border-radius: 20px;
+  height: 2.5vh;
+  text-align: center;
+  margin: 1%!important;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+
+}
+
+.tagsCont {
+  margin-top: 2%!important;
+}
+
+.userPhoto {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  background-color: transparent;
+  border: 1px solid orangered;
+}
+
+.tagIcon {
+  color:#fe6b8b!important;
+  cursor: pointer;
+}
+
+.deleteTagBtn {
+  width: 15px!important;
+  cursor: pointer;
 }
 
 @keyframes fading {
@@ -118,6 +157,7 @@
   position: relative;
   right: -10px;
   top: 10px;
+  cursor: pointer;
 }
 
 .MapContainer {
@@ -141,6 +181,7 @@
   width: 100%;
   height: 100%;
 }
+
 
 @media screen and (max-width: 1280px) {
   .profileImageContainer {
