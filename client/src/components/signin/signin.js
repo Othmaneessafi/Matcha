@@ -50,6 +50,7 @@ export default function signin(props) {
               alignItems="center"
             >
               <h1 className="logo">MATCHA</h1>
+              {console.log(props.form)}
               <Field
                 name="username"
                 label="Username"

@@ -37,6 +37,7 @@ export default function signup(props) {
               alignItems="center"
             >
               <h1 className="logo">MATCHA</h1>
+              {console.log(props.form)}
               <Field
                 name="username"
                 className="logupInput"

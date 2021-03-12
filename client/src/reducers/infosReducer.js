@@ -12,7 +12,7 @@ import {
 } from '../actions/resetStateAction';
 
 const DEFAULT_STATE = {
-  status: 'offline',
+  status: 'empty',
   error: null
 };
   
@@ -24,9 +24,8 @@ export default function log(state = DEFAULT_STATE, action) {
           error:null
         }
       case INFOS_USER_SUCCESS:
-
         return {
-          status:'online',
+          status:'updated',
           error: null
         }
       case INFOS_USER_ERROR:

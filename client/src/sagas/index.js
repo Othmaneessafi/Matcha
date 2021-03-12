@@ -6,7 +6,7 @@ import infosSaga from "./infosSaga"
 import resetPasswordSaga from './resetPSaga';
 
 
-export default function *ind() {
+export default function *index() {
   yield all([
     fork(registerSaga),
     fork(infosSaga),

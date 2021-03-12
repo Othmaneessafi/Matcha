@@ -7,6 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Infos from "./infos";
 import Photos from "./photos";
+import Finished from "./finished";
 import Localisation from "./Localisation";
 import "./profile.css";
 import Grid from "@material-ui/core/Grid";
@@ -90,10 +91,7 @@ export default function Profile(props) {
             alignItems="center"
           >
             {activeStep === steps.length ? (
-              <div>
-                <Typography>All steps completed</Typography>
-                <Button onClick={handleReset}>Reset</Button>
-              </div>
+              <Finished handle={handleSubmit} />
             ) : (
               <Grid
                 container
@@ -128,18 +126,6 @@ export default function Profile(props) {
                       style={{ color: "#C51162" }}
                     >
                       Back
-                    </Button>
-                  </Grid>
-                  <Grid item sm={4}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      className="loginBtn"
-                      type="submit"
-                      value="ok"
-                      onClick={handleSubmit}
-                    >
-                      save
                     </Button>
                   </Grid>
                   <Grid item sm={6}>

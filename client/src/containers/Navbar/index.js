@@ -6,7 +6,7 @@ import Nav from '../../components/navbar/navbar';
 const NavBarContainer = (props) => {
     const {user, handleLogout} = props;
     return(
-            <Nav handleLogout={handleLogout} user={user}/>
+        <Nav handleLogout={handleLogout} user={user}/>
     )
 }
 

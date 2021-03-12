@@ -17,6 +17,5 @@ profile = async (req, res) => {
     }).catch((error) => {
           console.log(error);
       }); 
-    res.send(data);
 };
 module.exports = profile;

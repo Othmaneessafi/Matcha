@@ -23,7 +23,7 @@ const Profile =
           bio,
           birth,
           intrest,
-          gender
+          gender,
         },
         "method": "post"
       });

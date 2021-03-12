@@ -7,9 +7,7 @@ import {
 
 import { CLEAR_USER_INFORMATION } from '../actions/logoutAction'
 
-import {
-  RESET_STATE
-} from '../actions/resetStateAction';
+import { RESET_STATE } from '../actions/resetStateAction';
 
 const DEFAULT_STATE = {
   status: 'offline',
@@ -24,7 +22,6 @@ export default function log(state = DEFAULT_STATE, action) {
           error:null
         }
       case LOGIN_USER_SUCCESS:
-
         return {
           status:'online',
           error: null

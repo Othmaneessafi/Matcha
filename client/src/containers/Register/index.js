@@ -41,26 +41,26 @@ const validate = (values) => {
 
 const mapStateToProps = (state) => (
 {
-    "form" : state.form,
-    "status" : state.register.registerStatus,
-    "err": state.register.error
+    form : state.form,
+    status : state.register.registerStatus,
+    err: state.register.error
 });
 const mapDispatchToProps = {
-    "registerAction": InscriptionAction
+    registerAction: InscriptionAction
 };
-const mergeProps = (stateProps, dispatchProps, otherProps)=> ({
+const mergeProps = (stateProps, dispatchProps, ownProps)=> ({
+    
     ...stateProps,
     ...dispatchProps,
-    ...otherProps,
-    "handleSubmit" : otherProps.handleSubmit((form)=>{
+    ...ownProps,
+    handleSubmit : ownProps.handleSubmit((form)=>{
         dispatchProps.registerAction(form);
     })
 });
 
-const connectedRegisterContainer = connect(mapStateToProps, mapDispatchToProps,mergeProps)(Register);
+const connectedRegisterContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(Register);
 const RegisterContainer = reduxForm({
     form : "register",
-    "destroyOnUnmount": true,  
     validate,
 })(connectedRegisterContainer);
 

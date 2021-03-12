@@ -19,15 +19,17 @@ const validate = (values) => {
 
 const mapStateToProps = (state) => (
 {
-    "form" : state.form,
-    "status" : state.login.status,
-    "errors": state.login.error,
-    "token" : state.user,
-    "registredStatus": state.register.registerStatus,
+    form : state.form,
+    status : state.login.status,
+    errors: state.login.error,
+    token : state.user,
+    registredStatus: state.register.registerStatus,
 });
+
 const mapDispatchToProps = {
     "loginAction": LoginAction
 };
+
 const mergeProps = (stateProps, dispatchProps, otherProps) => ({
     ...stateProps,
     ...dispatchProps,

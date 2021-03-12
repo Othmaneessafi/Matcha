@@ -19,6 +19,7 @@ export default function Navbar(props) {
     const {user, handleLogout} = props;
   const handleOpenMenu = (e) => {
     setanchorEl(e.currentTarget);
+    console.log(user);
   };
 
   const handleCloseMenu = () => {
