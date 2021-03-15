@@ -12,7 +12,7 @@ export const history = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
-  key: "use-app",
+  key: "matcha",
   storage: storage,
   whitelist: "user",
 };

@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import RadioGroup from "../commun/RadioGroup";
+import RadioGroup from "../shared/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import { makeStyles } from "@material-ui/core/styles";
-import { Field, FieldArray } from "redux-form";
-import renderField from "../commun/TextField";
+import { Field } from "redux-form";
+import renderField from "../shared/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import CreatableSelect from 'react-select/creatable';
 
 const useStyles = makeStyles({
   root: {
@@ -19,69 +20,25 @@ const useStyles = makeStyles({
   },
 });
 
-const handleTagAdd = (e) => {
-  return {id: e.target.id, name: e.target.name}
-};
-
-const renderMembers = ({ fields, meta: { error, submitFailed } }) => (
-  <>
-  {console.log(fields.getAll())}
-    <TextField
-      label="Tags"
-      color="secondary"
-      className="infosInputs"
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            <CheckCircleIcon className="tagIcon" onClick={() => fields.push({id: 1, name: "test"})} />
-          </InputAdornment>
-        ),
-      }}
-      InputLabelProps={{ className: "loginInputLabel" }}
-      fullWidth
-    />
-    {fields.map((tag, index) => (
-      <Grid
-        item
-        container
-        key={index}
-        justify="center"
-        alignItems="center"
-        sm={4}
-        className="tagsField"
-      >
-        <Grid item sm={9}>
-          {tag.name}
-        </Grid>
-        <Grid item sm={3}>
-          <HighlightOffIcon
-            className="deleteTagBtn"
-            id={tag.id}
-            onClick={() => fields.remove(index)}
-          />
-        </Grid>
-      </Grid>
-    ))}
-  </>
-);
-
-export default function Infos() {
+export default function Infos(props) {
   const classes = useStyles();
-  const [tags, setTag] = React.useState([]);
-  const [tagvalue, setTagValue] = React.useState("");
+  const [tags, setTag] = useState([]);
+  const [tagvalue, setTagValue] = useState("");
+  const { handleSubmit, selectLoading, selectTags, selectError, createTag } = props;
 
   const handleTagChange = (e) => {
     setTagValue(e.target.value);
   };
-
+  const handleCreate = (value) => {
+    createTag(value);
+  }
   const handleDeleteTag = (e) => {
     console.log(tags[e.target.id].id);
     console.log(tags);
     setTag(tags.filter((tg) => tg.id !== tags[e.target.id].id));
   };
 
-  const handleTagAdd = (e) => {
-    console.log(tags);
+  const handleTagAdd = (fields, e) => {
     if (tagvalue !== "" && tags.length < 5) {
       setTag([
         ...tags,
@@ -91,8 +48,34 @@ export default function Infos() {
         },
       ]);
     }
+    fields.push({ id: fields.length, name: tagvalue });
+    console.log();
   };
 
+  const selectField = ({ input, meta: { touched, error } }) => (
+    <div>
+      <CreatableSelect
+        {...input}
+        isMulti
+        isDisabled={selectLoading}
+        isLoading={selectLoading}
+        isClearable={false}
+        options={selectTags}
+        onBlur={() => input.onBlur(input.value)}
+        onChange={(value) => {
+          input.onChange(value);
+        }}
+        onCreateOption={handleCreate}
+      />
+      <div>
+        {touched && error && (
+          <div style={{ fontSize: "12px", color: "rgb(244, 67, 54)" }}>
+            {error}
+          </div>
+        )}
+      </div>
+    </div>
+  );
 
   return (
     <div className="infosContainer">
@@ -200,7 +183,7 @@ export default function Infos() {
                 alignItems="center"
                 className="tagsCont"
               >
-                <FieldArray name="tags" component={renderMembers} />
+                <Field name="tags" component={selectField} />
               </Grid>
             </Grid>
           </Grid>

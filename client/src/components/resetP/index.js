@@ -5,7 +5,7 @@ import { Field } from 'redux-form';
 import Button from "@material-ui/core/Button";
 import LoginImage from "./img/reset.svg";
 import { Link } from 'react-router-dom';
-import textField from '../commun/TextField'
+import textField from '../shared/TextField'
 
 export default function reset(props) {
   const { handleSubmit} = props;

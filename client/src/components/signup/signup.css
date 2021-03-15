@@ -78,12 +78,14 @@
     border-bottom-left-radius: 30px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 30px;
+    padding: 30px!important;
   }
-
+  
   .inputContainer {
     border-top-left-radius: 30px;
     border-bottom-left-radius: 0;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 0;
+    padding: 30px!important;
   }
 }

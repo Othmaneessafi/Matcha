@@ -100,4 +100,91 @@ module.exports = {
             });
         })
     },
+    TagCreatedNbr: function (id) {
+        return new Promise ((resolve, reject) => {
+            con.query(SELECT.TagCreatedNbr, [id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+
+    checkTags: function (tag) {
+        return new Promise ((resolve, reject) => {
+            con.query(SELECT.CheckTag, [tag], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+
+    deleteUserTag: function (id) {
+        return new Promise ((resolve, reject) => {
+            con.query(DELETE.DeleteUserTags, [id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    resolve(res);
+                }
+            });
+        })
+    },
+
+    getTags: function () {
+        return new Promise ((resolve, reject) => {
+            con.query(SELECT.GetTags,(err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+
+    getTagId : function (tag) {
+        return new Promise ((resolve, reject) => {
+            con.query(SELECT.GetTagId, [tag], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+
+    insertUserTag: function (id, tag) {
+        return new Promise ((resolve, reject) => {
+            con.query(INSERT.InsertUserTag, [id, tag], (err,res) => {
+                if(err)
+                    reject(err);
+                else
+                    resolve(res);
+            });
+        })
+    },
+
+    createTag: function (tag, id) {
+        return new Promise ((resolve, reject) => {
+            con.query(INSERT.CreateTag, [tag, id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+
+                    resolve(res);
+                }
+            });
+        })
+    },
 };

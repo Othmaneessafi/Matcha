@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import renderField from '../commun/TextField';
+import renderField from '../shared/TextField';
 import logo from '../../image/logo.png';
 
 const useStyles = makeStyles(theme => ({

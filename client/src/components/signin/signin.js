@@ -5,7 +5,7 @@ import { Field } from 'redux-form';
 import Button from "@material-ui/core/Button";
 import LoginImage from "./img/love.svg";
 import { Link } from 'react-router-dom';
-import textField from '../commun/TextField'
+import textField from '../shared/TextField'
 
 export default function signin(props) {
   const { handleSubmit} = props;
@@ -50,7 +50,6 @@ export default function signin(props) {
               alignItems="center"
             >
               <h1 className="logo">MATCHA</h1>
-              {console.log(props.form)}
               <Field
                 name="username"
                 label="Username"

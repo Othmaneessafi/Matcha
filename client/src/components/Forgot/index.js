@@ -5,7 +5,7 @@ import { Field } from 'redux-form';
 import Button from "@material-ui/core/Button";
 import LoginImage from "./img/forgot.svg";
 import { Link } from 'react-router-dom';
-import textField from '../commun/TextField'
+import textField from '../shared/TextField'
 
 export default function forgot(props) {
   const { handleSubmit} = props;

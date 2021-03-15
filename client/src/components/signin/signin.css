@@ -99,11 +99,13 @@
     border-top-right-radius: 30px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    padding: 30px!important;
   }
-
+  
   .loginInputContainer {
     border-top-right-radius: 0;
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
+    padding: 30px!important;
   }
 }

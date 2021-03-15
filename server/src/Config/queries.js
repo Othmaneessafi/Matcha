@@ -5,6 +5,10 @@ const queries = {
         GetUserById: "SELECT * FROM users WHERE id = ?",
         GetUserByUsername: "SELECT * FROM users WHERE username = ?",
         GetUserByToken: "SELECT * FROM users WHERE token = ?",
+        GetTagId: "SELECT tag_id FROM tags WHERE tag = ?",
+        GetTags: "SELECT tags.* FROM tags",
+        CheckTag: "SELECT COUNT(tag) as n FROM tags WHERE tag IN (?)",
+        TagCreatedNbr: "SELECT COUNT(tag) as n FROM tags WHERE create_tag = ? ",
     },
     INSERT: {
         AddUser: 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
@@ -17,6 +21,10 @@ const queries = {
         UpdateOnline: "UPDATE users SET online = 1 ,last_signin = null WHERE id = ?",
         UpdateOffline: "UPDATE users SET online = 0 ,last_signin = NOW() WHERE id = ?",
         UpdateInfos: "UPDATE users SET first_name = ? , last_name = ? , bio = ?, birth_date = ?, gender = ?, intrest = ? WHERE id = ?",
+        CreateTag: "INSERT INTO tags (tag, create_tag) VALUES (?, ?)"
+    },
+    DELETE: {
+        DeleteUserTags: "DELETE FROM `useTags` WHERE id_user = ?",
     },
 }
 module.exports = queries;

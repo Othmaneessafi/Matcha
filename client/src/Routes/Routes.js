@@ -4,6 +4,7 @@ import {Route, Switch} from 'react-router-dom';
 import RegisterUser from '../containers/Register';
 import loginUser from '../containers/Login';
 import Browser from '../components/browsing/browsing';
+import Infos from '../containers/Infos';
 import Profile from '../containers/Profile';
 import confirme from '../containers/emailConfirmation';
 import NotFoundPage from '../NotFoundPage';
@@ -18,6 +19,7 @@ const Routes = () => {
                 <Route exact path="/signin" component={loginUser}/>
                 <Route exact path="/browsing" component={Browser}/>
                 <Route exact path="/profile" component={Profile}/>
+                <Route exact path="/infos" component={Infos}/>
                 <Route exact path="/confirme/:token" component={confirme}/>
                 <Route exact path="/resetPassword/:token"  component={ResetPassword}/>
                 <Route exact path="/forgotPassword"  component={ForgotPassword}/>

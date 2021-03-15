@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import LogupImage from "./img/loving.svg";
 import { Link } from "react-router-dom";
 import { Field } from 'redux-form';
-import renderField from '../commun/TextField';
+import renderField from '../shared/TextField';
 
 export default function signup(props) {
   const {handleSubmit} = props;
