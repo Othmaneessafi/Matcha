@@ -9,13 +9,8 @@ import textField from "../shared/TextField";
 import Axios from "axios";
 
 export default function Profile(props) {
-  useEffect(() => {
-    Axios.get("http://localhost:3001/browsing").then((response) => {
-      console.log(response.data);
-    });
-  }, []);
-  const { handleSubmit } = props;
-
+  const { handleSubmit, user } = props;
+  console.log(user);
   return (
     <>
       <Grid
@@ -40,13 +35,13 @@ export default function Profile(props) {
               className="profileUserImage"
               style={{
                 backgroundImage:
-                  "url(https://images.unsplash.com/photo-1615803795804-06a0c2a0030e?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzNHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60)",
+                  `url(${user.profile_img})`,
                 backgroundSize: "cover",
               }}
             ></Grid>
             <Grid item sm={10} className="profileFullName">
-              <h1>Harry kane</h1>
-              <h3>Harry1</h3>
+            <h1>{user.first_name}</h1>
+            <h3>{user.username}</h3>
             </Grid>
           </Grid>
 
@@ -59,53 +54,9 @@ export default function Profile(props) {
             justify="center"
             alignItems="center"
           >
-            <Grid
-              item
-              xs={12}
-              lg={6}
-              container
-              direction="column"
-              justify="center"
-              alignItems="center"
-            >
-              <h1 className="logo">MATCHA</h1>
-              <Field
-                name="username"
-                label="Username"
-                type="text"
-                component={textField}
-                className="profileInput"
-                color="secondary"
-                InputProps={{ className: "profileInput" }}
-                InputLabelProps={{ className: "profileInputLabel" }}
-              />
-
-              <Field
-                name="password"
-                type="password"
-                component={textField}
-                rows="1"
-                label="Password"
-                color="secondary"
-                className="profileInput"
-                InputProps={{ className: "profileInput" }}
-                InputLabelProps={{ className: "profileInputLabel" }}
-              />
-              <div style={{ height: 30 }} />
-              <Button
-                variant="contained"
-                color="primary"
-                className="profileBtn"
-                type="submit"
-                value="ok"
-                onClick={handleSubmit}
-              >
-                profile
-              </Button>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
     </>
   );
 }

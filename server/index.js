@@ -30,6 +30,13 @@ app.get('/browsing', (req, res) => {
     });
 })
 
+app.get('/profile', (req, res) => {
+    const sql = 'SELECT *, images.id as postId, users.id as userId FROM images INNER JOIN users ON images.user_id = users.id';
+    db.query(sql, (err, result) => {
+        res.send(result);
+    });
+})
+
 app.listen(3001, () => {
     console.log('running on port 3001');
 })

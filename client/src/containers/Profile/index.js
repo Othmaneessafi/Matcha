@@ -11,6 +11,7 @@ const mapStateToProps = (state) => ({
   Tags: state.infos.selectTags,
   loadingTags: state.infos.selectLoading,
   erroTags: state.infos.error,
+  user : state.user
 });
 const mapDispatchToProps = {
   infosAction: InfosAction,
