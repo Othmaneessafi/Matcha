@@ -1,4 +1,3 @@
-
 const user = require('../models/user');
 
 getTags = async (req, res) => {

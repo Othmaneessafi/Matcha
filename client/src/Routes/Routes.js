@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Route, Switch} from 'react-router-dom';
 import RegisterUser from '../containers/Register';
 import loginUser from '../containers/Login';
-import Browser from '../components/browsing/browsing';
+import Browser from '../containers/Browsing';
 import Infos from '../containers/Infos';
 import Profile from '../containers/Profile';
 import confirme from '../containers/emailConfirmation';

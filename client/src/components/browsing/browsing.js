@@ -43,12 +43,6 @@ export default function Browsing() {
       return img;
   }
 
-  useEffect(() => {
-    Axios.get("http://localhost:3001/browsing").then((response) => {
-      setImgs(response.data);
-    });
-  }, []);
-
   return (
     <>
       <Navbar />
@@ -85,7 +79,7 @@ export default function Browsing() {
               Age
             </Typography>
             <Slider
-              Value={age}
+              value={age}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"

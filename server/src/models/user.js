@@ -3,7 +3,7 @@ const queries = require("../Config/queries");
 const SELECT = queries.SELECT;
 const INSERT = queries.INSERT;
 const UPDATE = queries.UPDATE;
-// const DELETE = queries.DELETE;
+const DELETE = queries.DELETE;
 
 module.exports = {
     Register: function (username, email, password) {
@@ -14,16 +14,6 @@ module.exports = {
         });
     },
 
-    updateUser: function (first_name, last_name, bio, birth,gender, intrest,  id) {
-        return new Promise((resolve, reject) => {
-            con.query(UPDATE.UpdateInfos, [first_name, last_name, bio, birth, gender, intrest, id], (err, res) => {
-                if (err)
-                    reject(err);
-                else
-                    resolve(res);
-            });
-        })
-    },
     getUser:  function (type, value) {
         return new Promise((resolve, reject) => {
             con.query(SELECT[type], value, (err, res) => {
@@ -40,6 +30,18 @@ module.exports = {
             });
         })
     },
+    getUsers: function (id) {
+        return new Promise ((resolve, reject) => {
+            con.query(SELECT.GetUsers, [id,id,id,id], (err,res) => {
+                if(err)
+                    reject(err);
+                else
+                {
+                    resolve(JSON.parse(JSON.stringify(res)));
+                }
+            });
+        })
+    },
     update: function (type, value){
         return new Promise ((resolve, reject) => {
             con.query(UPDATE[type], value,(err,res) => {
@@ -50,56 +52,19 @@ module.exports = {
             });
         })
     },
-    select: function (type, value) {
-        return new Promise((resolve, reject) => {
-            con.query(SELECT[type], value, (err, res) => {
-                if (err)
-                    reject(err);
-                else
-                    resolve(JSON.parse(JSON.stringify(res)));
-            });
-        })
-    },
-    UpdatvfToken: function (email, token) {
-        return new Promise((resolve, reject) => {
-            con.query(UPDATE.UpToken, [token, email], (err, res) => {
-                if (err)
-                    reject(err);
-                else
-                    resolve(res);
-            });
-        })
-    },
-    verif: function (email) {
-        return new Promise((resolve, reject) => {
-            con.query(UPDATE.verif, email, (err, res) => {
-                if (err)
-                    reject(err);
-                else
-                    resolve(res);
-            });
-        })
-    },
-    non_verif: function (email) {
-        return new Promise((resolve, reject) => {
-            con.query(UPDATE.non_verif, email, (err, res) => {
-                if (err)
-                    reject(err);
-                else
-                    resolve(res);
-            });
-        })
-    },
-    ResetPassword : function (password, token) {
+
+    updateInfo: function (lastname, firstname, gender, Sexual_orientation, date_birthday, biography, id) {
         return new Promise ((resolve, reject) => {
-            con.query(UPDATE.ResetPassword, [password, token],(err,res) => {
+            con.query(UPDATE.UpdateInfo, [lastname, firstname, gender, Sexual_orientation, date_birthday, biography, id], (err,res) => {
                 if(err)
-                    reject (err);
-                else
-                    resolve (res);
+                    reject(err);
+                else{
+                    resolve(res);
+                }
             });
         })
     },
+
     TagCreatedNbr: function (id) {
         return new Promise ((resolve, reject) => {
             con.query(SELECT.TagCreatedNbr, [id], (err,res) => {
@@ -184,6 +149,81 @@ module.exports = {
 
                     resolve(res);
                 }
+            });
+        })
+    },
+    getUserInterests : function (id) {
+        return new Promise ((resolve, reject) => {
+            con.query(SELECT.GetUserInter, [id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    let options = [];
+                    Object.keys(resArray).forEach(function()
+                    {
+                        for (var i = 0; i < resArray.length; i++) {
+                            options[i] = {
+                                value: resArray[i].interest,
+                                label: resArray[i].interest,
+                            };
+                        }
+                    });
+                    if(options.length > 0)
+                        resolve(options);
+                    else
+                        resolve(null);
+                }
+            });
+        })
+    },
+    select: function (type, value) {
+        return new Promise((resolve, reject) => {
+            con.query(SELECT[type], value, (err, res) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(JSON.parse(JSON.stringify(res)));
+            });
+        })
+    },
+    UpdatvfToken: function (email, token) {
+        return new Promise((resolve, reject) => {
+            con.query(UPDATE.UpToken, [token, email], (err, res) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(res);
+            });
+        })
+    },
+    verif: function (email) {
+        return new Promise((resolve, reject) => {
+            con.query(UPDATE.verif, email, (err, res) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(res);
+            });
+        })
+    },
+    non_verif: function (email) {
+        return new Promise((resolve, reject) => {
+            con.query(UPDATE.non_verif, email, (err, res) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(res);
+            });
+        })
+    },
+    ResetPassword : function (password, token) {
+        return new Promise ((resolve, reject) => {
+            con.query(UPDATE.ResetPassword, [password, token],(err,res) => {
+                if(err)
+                    reject (err);
+                else
+                    resolve (res);
             });
         })
     },

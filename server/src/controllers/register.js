@@ -26,7 +26,7 @@ Register = async (req, res) => {
     else {
         let hashPassword = await bcrypt.hash(password, saltRounds);
         const vfToken = crypto.randomBytes(64).toString('hex');
-        user.Register( username, email, hashPassword);
+        user.Register(username, email, hashPassword);
         user.UpdatvfToken(email, vfToken);
         sendmail.sendEmail(email, vfToken);
     }

@@ -2,6 +2,7 @@ import { connectRouter } from "connected-react-router";
 import registerReducer from "./registerReducer";
 import loginReducer from "./loginReducer";
 import infosReducer from "./infosReducer";
+import usersReducer from "./usersReducer";
 import alertReducer from "./alertReducer";
 import {combineReducers} from "redux";
 import {reducer as form} from "redux-form";
@@ -17,6 +18,7 @@ const combinedReducer = (history)=> combineReducers({
     infos: infosReducer,
     resetPassword: resetPasswordReducer,
     alert: alertReducer,
+    users: usersReducer,
     form
 });
 export default combinedReducer;

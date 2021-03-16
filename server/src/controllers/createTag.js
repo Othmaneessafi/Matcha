@@ -1,4 +1,4 @@
-  const user = require('../models/user');
+const user = require('../models/user');
 
 createTag = async (req, res) => {
     const {tag, id} = req.body;

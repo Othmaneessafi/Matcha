@@ -4,7 +4,7 @@ import loginSaga from './loginSaga';
 import logoutSaga from "./logoutSaga";
 import infosSaga from "./infosSaga"
 import resetPasswordSaga from './resetPSaga';
-
+import usersSaga from "./usersSaga";
 
 export default function *index() {
   yield all([
@@ -12,6 +12,7 @@ export default function *index() {
     fork(infosSaga),
     fork(loginSaga),
     fork(resetPasswordSaga),
-    fork(logoutSaga)
+    fork(logoutSaga),
+    fork(usersSaga),
   ]);
 }
