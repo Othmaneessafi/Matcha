@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Cards from "../Cards/Cards";
 import Navbar from "../../containers/Navbar";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Axios from "axios";
+// import Axios from "axios";
 import "./browsing.css";
 
 function valuetext(value) {

@@ -8,10 +8,10 @@ const mysql = require('mysql');
 
 
 const db = mysql.createPool({
-    host: "192.168.99.126",
-    port: "3306",
-    user: "tibicha",
-    password: "tibicha",
+    host: "localhost",
+    // port: "3306",
+    user: "root",
+    password: "",
     database: 'matcha'
 });
 

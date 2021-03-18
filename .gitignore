@@ -6,6 +6,7 @@
 ### macOS ###
 # General
 .DS_Store
+server/src/Config/db_conn.js
 */.DS_Store
 */*/.DS_Store
 */*/*/.DS_Store

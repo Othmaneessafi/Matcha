@@ -6,6 +6,7 @@ const sendmail = require('./sendmail');
 const saltRounds = 10;
 
 Register = async (req, res) => {
+    console.log("oj");
     const {username, email, password, confirmPassword} = req.body;
     let GetUserByUsername = await user.getUser('GetUserByUsername', username);
     let GetUserByEmail = await user.getUser('GetUserByEmail', email);

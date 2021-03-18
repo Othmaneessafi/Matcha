@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./profile.css";
 import Grid from "@material-ui/core/Grid";
-import { Field } from "redux-form";
-import Button from "@material-ui/core/Button";
-import profileImage from "./img/love.svg";
-import { Link } from "react-router-dom";
-import textField from "../shared/TextField";
-import Axios from "axios";
+// import { Field } from "redux-form";
+// import Button from "@material-ui/core/Button";
+// import profileImage from "./img/love.svg";
+// import { Link } from "react-router-dom";
+// import textField from "../shared/TextField";
+// import Axios from "axios";
 
 export default function Profile(props) {
   const { handleSubmit, user } = props;
@@ -35,13 +35,14 @@ export default function Profile(props) {
               className="profileUserImage"
               style={{
                 backgroundImage:
-                  `url(${user.profile_img})`,
+                  `url()`,
                 backgroundSize: "cover",
               }}
             ></Grid>
             <Grid item sm={10} className="profileFullName">
-            <h1>{user.first_name}</h1>
-            <h3>{user.username}</h3>
+            <h1>Harry kane</h1>
+            <h3>kane1</h3>
+            <h5><i class="fas fa-envelope"></i> kane@gmail.com</h5>
             </Grid>
           </Grid>
 
