@@ -7,10 +7,10 @@ import { resetStateUsers } from "../../actions/resetStateAction";
 const BrowseContainer = (props) => {
   const { router, users, getUsers } = props;
   const [index, setIndex] = useState(0);
-  const [rating, setValueRating] = useState([0, 0]);
-  const [age, setValueAge] = useState([18, 18]);
-  const [loc, setValueLoc] = useState([0, 0]);
-  const [nbrTags, setValueNbrTags] = useState([0, 0]);
+  const [rating, setValueRating] = useState([0]);
+  const [age, setValueAge] = useState([18]);
+  const [loc, setValueLoc] = useState([0]);
+  const [nbrTags, setValueNbrTags] = useState([0]);
   const route = router.location.pathname;
   const [tags, setValuetags] = useState(null);
   console.log(users);

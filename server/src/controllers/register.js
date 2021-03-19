@@ -6,7 +6,6 @@ const sendmail = require('./sendmail');
 const saltRounds = 10;
 
 Register = async (req, res) => {
-    console.log("oj");
     const {username, email, password, confirmPassword} = req.body;
     let GetUserByUsername = await user.getUser('GetUserByUsername', username);
     let GetUserByEmail = await user.getUser('GetUserByEmail', email);
@@ -26,10 +25,10 @@ Register = async (req, res) => {
     }
     else {
         let hashPassword = await bcrypt.hash(password, saltRounds);
-        const vfToken = crypto.randomBytes(64).toString('hex');
+        const token = crypto.randomBytes(64).toString('hex');
         user.Register(username, email, hashPassword);
-        user.UpdatvfToken(email, vfToken);
-        sendmail.sendEmail(email, vfToken);
+        user.Updattoken(email, token);
+        sendmail.sendEmail(email, token);
     }
     res.send(data);
 };

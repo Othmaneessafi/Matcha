@@ -16,8 +16,8 @@ resetPassword = async (req, res) => {
             else
             {
                 user.ResetPassword(hashPassword, token);
-                const vfToken = crypto.randomBytes(64).toString('hex');
-                user.UpdatvfToken(response.email, vfToken);
+                const token = crypto.randomBytes(64).toString('hex');
+                user.Updattoken(response.email, token);
                 res.send({reset: true});
             }
         }

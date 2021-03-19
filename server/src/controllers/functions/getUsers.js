@@ -5,9 +5,9 @@ const checkLikes= require('./checkLikes')
 getUsers = async (req, res) => {
     const Da = [];
     const user_id = req.body.id;
-    const indice = req.body.indice;
+    const index = req.body.index;
     const filtre = req.body.filtre;
-    const users = await filtreUsers(user_id,filtre,indice);
+    const users = await filtreUsers(user_id,filtre,index);
     
     for (var i = 0; i < users.length; i++) {
         const images = await img.getPics(users[i].id);

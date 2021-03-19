@@ -8,9 +8,10 @@ export const getUsers =
         try {
             const user = yield select(state => state.user);
             const token = yield select((state) => state.user.token);
+            console.log(data);
             const response = yield call(request, {
             "url": "http://localhost:3001/getUsers",
-            "data": {id : user.id,filtre : data.filtre, index : data.index},
+            "data": {id : user.id, filtre : data.filtre, index : data.index},
             "method": "post"
             },token);
             if(response)

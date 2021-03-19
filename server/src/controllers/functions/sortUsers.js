@@ -15,7 +15,7 @@ sortUsers = async (req, res) => {
     if(route === '/browse')
     {
         for (var i = 0; i < users.length; i++) {
-            if(user1[0].sexOrient === 'men')
+            if(user1[0].interest === 'men')
             {
                 if(users[i].gender === 'female')
                 {
@@ -23,7 +23,7 @@ sortUsers = async (req, res) => {
                     i--;
                 }
             }
-            else if(user1[0].sexOrient === 'women')
+            else if(user1[0].interest === 'women')
             {
                 if(users[i].gender === 'male')
                 {

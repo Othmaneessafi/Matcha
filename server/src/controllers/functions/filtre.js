@@ -6,7 +6,7 @@ const so = require('./sort');
 
 
 
-const filtreUsers = async (user_id,fil,indice) => {
+const filtreUsers = async (user_id,fil,index) => {
     let user2 = '';
     let SorteTabe = '';
     const filtre = findFilter(fil);
@@ -15,7 +15,7 @@ const filtreUsers = async (user_id,fil,indice) => {
     if(fil && fil.router === '/browse' || fil === null )
     {
         for (var i = 0; i < users.length; i++) {
-            if(user1[0].sexOrient === 'men')
+            if(user1[0].interest === 'men')
             {
                 if(users[i].gender === 'female')
                 {
@@ -23,34 +23,34 @@ const filtreUsers = async (user_id,fil,indice) => {
                     i--;
                 }
             }
-            else if(user1[0].sexOrient === 'women')
+            else if(user1[0].interest === 'women')
             {
                 if(users[i].gender === 'male')
                 {
                     users.splice(i, 1);
                     i--;
-                }
+                } 
             }
         }
     }
     
-        if(filtre!== null && filtre.tags !== null)
-        {
-        for (var i = 0; i < users.length; i++){
-           const tagsU2 = await T.getTags(users[i].id)
-            if(tagsU2)
-            {
-                let checker = (arr, target) => target.every(v => arr.includes(v));
-                let isExit = checker(tagsU2, filtre.tags);
-                if(isExit === false)
-                {
-                    users.splice(i, 1);
-                    i--;
-                }
-            }
+        // if(filtre!== null && filtre.tags !== null)
+        // {
+        // for (var i = 0; i < users.length; i++){
+        //    const tagsU2 = await T.getTags(users[i].id)
+        //     if(tagsU2)
+        //     {
+        //         let checker = (arr, target) => target.every(v => arr.includes(v));
+        //         let isExit = checker(tagsU2, filtre.tags);
+        //         if(isExit === false)
+        //         {
+        //             users.splice(i, 1);
+        //             i--;
+        //         }
+        //     }
             
-        }
-        } 
+        // }
+        // } 
 
        if(filtre!== null && filtre.nbrTags !== null)
        {
@@ -81,16 +81,16 @@ const filtreUsers = async (user_id,fil,indice) => {
             }
         }
        } 
-       if(filtre!== null && filtre.loc !== null)
-       {
+    //    if(filtre!== null && filtre.loc !== null)
+    //    {
 
-            if( users[i].distance < filtre.loc.min || users[i].distance > filtre.loc.max)
-            {
-                    users.splice(i, 1);
-                    i--;
-            }
-       }
-       const cmp = indice * 20;
+    //         if( users[i].distance < filtre.loc.min || users[i].distance > filtre.loc.max)
+    //         {
+    //                 users.splice(i, 1);
+    //                 i--;
+    //         }
+    //    }
+       const cmp = index * 20;
        for (var i = 0; i < users.length; i++) {
         user2 = {
             rating : users[i].rating,
@@ -113,8 +113,8 @@ const findFilter = (filtre) =>{
         age : null,
         loc : null
     }
-    if(filtre.tags.length !== 0)
-        data.tags = filtre.tags
+    // if(filtre.tags.length !== 0)
+    //     data.tags = filtre.tags
     if(filtre.nbrTags[0] !== 0 || filtre.nbrTags[1] !== 0)
         data.nbrTags = {min : filtre.nbrTags[0],max : filtre.nbrTags[1]}
     if(filtre.rating[0] !== 0 || filtre.rating[1] !== 0)

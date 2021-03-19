@@ -6,7 +6,7 @@ sendResetEmail = async (req, res) => {
     .then((response) => {
         if(response){
             // console.log("okkk");
-            sendmail.sendResetEmail(email, response.vfToken);
+            sendmail.sendResetEmail(email, response.token);
             res.send({sent: true, error: null});
         }
         else

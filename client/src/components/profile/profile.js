@@ -49,7 +49,7 @@ export default function Profile(props) {
             <Grid item sm={10} className="profileFullName">
             <h1>Harry kane</h1>
             <h3>kane1</h3>
-            <h5><i class="fas fa-envelope"></i> kane@gmail.com</h5>
+            <h5><i className="fas fa-envelope"></i> kane@gmail.com</h5>
             <Button variant="contained" color="primary" className="loginBtn" type="submit" value="ok" onClick={handleEdit}>Edit</Button>
             </Grid>
             <Grid item sm={10} style={{ height: "30%"}} ></Grid></>

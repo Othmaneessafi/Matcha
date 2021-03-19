@@ -7,8 +7,8 @@ confirmToken = async (req, res) => {
     user.getUser('GetUserByToken', token)
         .then((response) => {
             if (response) {
-                const vfToken = crypto.randomBytes(64).toString('hex');
-                user.UpdatvfToken(response.email, vfToken);
+                const token = crypto.randomBytes(64).toString('hex');
+                user.Updattoken(response.email, token);
                 user.verif(response.email);
                 res.send('success');
             }

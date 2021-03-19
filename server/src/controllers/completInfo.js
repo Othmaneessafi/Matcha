@@ -4,17 +4,17 @@ const user = require('../models/user');
 
 addInfo = async (req, res) => {
     const add_info = req.body;
-    let verif = false;
+    let verification= false;
     if (add_info.tags.length) {
         // console.log("dkhaaaaaalllll")
         const result = await user.checkTags(add_info.tags)
         if (result[0].n !== add_info.tags.length)
-            verif = false;
+            verification= false;
         else
-            verif = true;
+            verification= true;
     }
     if (add_info.tags.length > 5) {
-        verif = false;
+        verification= false;
         // console.log("fo9 _5")
         res.send({ complet_step1: false, error: 'You can not add more than 5 Tags !' });
         return;

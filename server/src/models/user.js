@@ -187,7 +187,7 @@ module.exports = {
             });
         })
     },
-    UpdatvfToken: function (email, token) {
+    Updattoken: function (email, token) {
         return new Promise((resolve, reject) => {
             con.query(UPDATE.UpToken, [token, email], (err, res) => {
                 if (err)

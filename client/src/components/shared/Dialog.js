@@ -18,12 +18,14 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog() {
+export default function FullScreenDialog({ user }) {
+  console.log(user);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -35,10 +37,8 @@ export default function FullScreenDialog() {
   };
 
   return (
-    <div >
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open
-      </Button>
+    <div>
+      <VisibilityIcon onClick={handleClickOpen} />
       <Dialog
         fullScreen
         open={open}
@@ -75,26 +75,32 @@ export default function FullScreenDialog() {
               className="profileImageContainer"
               container
               justify="center"
-              // alignItems="center"
+              alignItems="center"
             >
               <Grid
                 item
                 sm={10}
                 className="profileUserImage"
-                style={{
-                  backgroundImage: `url()`,
-                  backgroundSize: "cover",
-                }}
-              ></Grid>
+              >
+                <img
+                  src={user.images[0].path}
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    objectFit: "cover",
+                    borderRadius: "5px",
+                  }}
+                />
+              </Grid>
               <>
                 <Grid item sm={10} className="profileFullName">
-                  <h1>Harry kane</h1>
-                  <h3>kane1</h3>
+                  <h1>{user.user.first_name + " " + user.user.last_name}</h1>
+                  <h3>{user.user.username}</h3>
                   <h5>
-                    <i class="fas fa-envelope"></i> kane@gmail.com
-                  </h5>{" "}
+                    <i className="fas fa-envelope"></i>
+                    {user.user.email}
+                  </h5>
                 </Grid>
-                <Grid item sm={10} style={{ height: "30%" }}></Grid>
               </>
               <Grid item sm={10}></Grid>
             </Grid>
@@ -104,10 +110,21 @@ export default function FullScreenDialog() {
               container
               xs={12}
               lg={8}
-              className="profileInputContainer"
+              // className="profileInputContainer"
               justify="center"
               alignItems="center"
-            ></Grid>
+              spacing={2}
+              style={{ padding: "5%" }}
+            >
+              {user.images.map((img, i) => (
+                <Grid item sm={4}>
+                  <img
+                    src={img.path}
+                    style={{ height: "100%", width: "100%" }}
+                  />
+                </Grid>
+              ))}
+            </Grid>
           </Grid>
         </Grid>
       </Dialog>
