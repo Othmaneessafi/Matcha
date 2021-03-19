@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const mysql = require('mysql');
 
+console.log('ol');
 
 const db = mysql.createPool({
     host: "localhost",
@@ -14,7 +15,6 @@ const db = mysql.createPool({
     password: "",
     database: 'matcha'
 });
-
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));

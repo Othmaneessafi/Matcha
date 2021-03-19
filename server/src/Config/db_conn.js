@@ -14,7 +14,7 @@ const con = mysql.createConnection({
 // });
 
 // app.get('/',(req,res)=>{
-//     con.query('CREATE DATABASE IF NOT EXISTS db_matcha',(err,result)=>{
+//     con.query('CREATE DATABASE IF NOT EXISTS test',(err,result)=>{
 //         if (err)
 //             console.log(err)
 //     })

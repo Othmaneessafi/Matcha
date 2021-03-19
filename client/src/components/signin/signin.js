@@ -9,7 +9,7 @@ import textField from '../shared/TextField'
 
 export default function signin(props) {
   const { handleSubmit} = props;
-
+  console.log(props);
   return (
     <>
       <Grid

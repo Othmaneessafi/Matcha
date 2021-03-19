@@ -19,13 +19,13 @@ const setProfilePicture = require ('../controllers/setProfilePicture')
 const getUsers = require('../controllers/functions/getUsers');
 
 
-router.post('/login', Login);
-router.post('/register', Register);
+router.post('/signin', Login);
+router.post('/signup', Register);
 router.post('/logout', logout);
 router.post('/confirmEmail', checkConfirmToken);
 router.post('/sendResetEmail', sendResetEmail);
 router.post('/resetPassword', resetPassword);
-router.post('/addInfo', addInfo);
+router.post('/infos', addInfo);
 router.post('/getTags', getTags);
 router.post('/createTag', createTag);
 router.post('/updateStep',updateStep);

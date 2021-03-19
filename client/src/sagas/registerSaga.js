@@ -3,6 +3,7 @@ import {push} from "react-router-redux";
 import {resetState} from '../actions/resetStateAction';
 import {inscriptionError, inscriptionUserSuccess, EmailConfirmationSuccess, EmailConfirmationError} from "../actions/registerAction";
 import axios from 'axios'
+import  {setAlertAction } from '../actions/alertAction';
 
 const inscription =
   function *inscription ({data}) {
@@ -21,6 +22,10 @@ const inscription =
         }
         else
           yield put(inscriptionError('Username and email already exist'));
+          yield put(setAlertAction({
+            text: 'Username and email already exist',
+            color: "danger"
+          }));
       }
       yield delay(4000);
       yield put(resetState());

@@ -41,13 +41,13 @@ app.use(upload)
 
 //error
 app.use((req, res, next) => {
+    console.log(res)
     var err = new Error('not found');
     err.status = 404;
     next(err);
 });
 
 app.use((err, req, res, next) => {
-    console.log(err)
     const status = err.status || 500;
     const error = err.message || 'Error processing your request';
 

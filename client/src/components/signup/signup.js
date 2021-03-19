@@ -9,6 +9,7 @@ import renderField from '../shared/TextField';
 
 export default function signup(props) {
   const {handleSubmit} = props;
+  console.log(props);
   return (
     <>
       <Grid
