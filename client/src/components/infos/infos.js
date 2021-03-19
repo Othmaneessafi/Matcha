@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 import RadioGroup from "../shared/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import { makeStyles } from "@material-ui/core/styles";
 import { Field } from "redux-form";
 import renderField from "../shared/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import CreatableSelect from 'react-select/creatable';
 
 const useStyles = makeStyles({
@@ -24,19 +20,19 @@ export default function Infos(props) {
   const classes = useStyles();
   const [tags, setTag] = useState([]);
   const [tagvalue, setTagValue] = useState("");
-  const { handleSubmit, selectLoading, selectTags, selectError, createTag } = props;
+  const {selectLoading, selectTags, createTag } = props;
 
-  const handleTagChange = (e) => {
-    setTagValue(e.target.value);
-  };
+  // const handleTagChange = (e) => {
+  //   setTagValue(e.target.value);
+  // };
   const handleCreate = (value) => {
     createTag(value);
   }
-  const handleDeleteTag = (e) => {
-    console.log(tags[e.target.id].id);
-    console.log(tags);
-    setTag(tags.filter((tg) => tg.id !== tags[e.target.id].id));
-  };
+  // const handleDeleteTag = (e) => {
+  //   console.log(tags[e.target.id].id);
+  //   console.log(tags);
+  //   setTag(tags.filter((tg) => tg.id !== tags[e.target.id].id));
+  // };
 
   const handleTagAdd = (fields, e) => {
     if (tagvalue !== "" && tags.length < 5) {

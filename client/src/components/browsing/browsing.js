@@ -4,6 +4,7 @@ import Navbar from "../../containers/Navbar";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import Dialog from "../shared/Dialog"
 // import Axios from "axios";
 import "./browsing.css";
 
@@ -136,6 +137,7 @@ export default function Browsing() {
         </Grid>
         <Grid item sm={12} style={{ height: 50 }}></Grid>
         <Grid item container sm={12}>
+          <Dialog />
           {imgs
             .filter(filter)
             .map((img, i) => (

@@ -41,8 +41,8 @@ export default function signup(props) {
                 name="username"
                 className="logupInput"
                 color="secondary"
-                InputProps={{ className: "logupInput" }}
-                InputLabelProps={{ className: "logupInputLabel" }}
+                InputProps={{ className: "loginInput" }}
+                InputLabelProps={{ className: "loginInputLabel" }}
                 component={renderField}
                 label="Username"
                 type="text"
@@ -58,8 +58,8 @@ export default function signup(props) {
                 rows='1'
                 className="logupInput"
                 color="secondary"
-                InputProps={{ className: "logupInput" }}
-                InputLabelProps={{ className: "logupInputLabel" }}
+                InputProps={{ className: "loginInput" }}
+                InputLabelProps={{ className: "loginInputLabel" }}
 
               />   
               <Field
@@ -70,8 +70,8 @@ export default function signup(props) {
                 rows='1'
                 color="secondary"
                 className="logupInput"
-                InputProps={{ className: "logupInput" }}
-                InputLabelProps={{ className: "logupInputLabel" }}
+                InputProps={{ className: "loginInput" }}
+                InputLabelProps={{ className: "loginInputLabel" }}
               /> 
               <Field
                 name="confirmPassword"
@@ -81,8 +81,8 @@ export default function signup(props) {
                 rows='1'
                 color="secondary"
                 className="logupInput"
-                InputProps={{ className: "logupInput" }}
-                InputLabelProps={{ className: "logupInputLabel" }}
+                InputProps={{ className: "loginInput" }}
+                InputLabelProps={{ className: "loginInputLabel" }}
               />      
               <div style={{ height: 30 }} />
               <Button variant="contained" color="primary" className="logupBtn" onClick={handleSubmit}>
