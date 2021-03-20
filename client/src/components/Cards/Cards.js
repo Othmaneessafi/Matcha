@@ -14,6 +14,17 @@ const capitalize = (str) =>{
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+const Age = (birthday) => {
+  let today = new Date();
+  let birthDate = new Date(birthday);
+  let age = today.getFullYear() - birthDate.getFullYear();
+  let m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+  }
+  return age;
+}
+
 export default function Cards({ user }) {
 
   const [props, set] = useSpring(() => ({
@@ -37,7 +48,7 @@ export default function Cards({ user }) {
     >
       <img src={user.images[0] ? user.images[0].path : ''} alt="imgs" className="cardImage shadow" />
       <div className="cardInfos">
-        <h1 className="cardUsername">{capitalize(user.user.username)}, {user.user.age}</h1>
+        <h1 className="cardUsername">{capitalize(user.user.username)}, {Age(user.user.birth_date)}</h1>
         <div className="CardDescrtion">{stars}</div>
       </div>
       <Grid container className="cardChoice">

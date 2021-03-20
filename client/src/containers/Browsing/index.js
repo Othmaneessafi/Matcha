@@ -9,11 +9,10 @@ const BrowseContainer = (props) => {
   const [index, setIndex] = useState(0);
   const [rating, setValueRating] = useState([0]);
   const [age, setValueAge] = useState([18]);
-  const [loc, setValueLoc] = useState([0]);
+  const [localisation, setValueLoc] = useState([0]);
   const [nbrTags, setValueNbrTags] = useState([0]);
   const route = router.location.pathname;
   const [tags, setValuetags] = useState(null);
-  console.log(users);
   const [state, setState] = useState({
     user: null,
     images: null,
@@ -24,14 +23,14 @@ const BrowseContainer = (props) => {
     nbrTags: nbrTags,
     rating: rating,
     age: age,
-    loc: loc,
+    localisation: localisation,
     router: route,
   };
   useEffect(() => {
     setValueRating([0]);
     setValueAge([18]);
     setValueLoc([0]);
-    setValueNbrTags([0, 0]);
+    setValueNbrTags([0]);
     setValuetags(null);
     setIndex(0);
     if (route === "/browsing") getUsers(null, 0);
@@ -61,7 +60,7 @@ const BrowseContainer = (props) => {
 
   const handleSubmit = () => {
     if(nbrTags[0] === 0 && nbrTags[1] === 0 && rating[0] === 0 
-        && rating[1] === 0 && loc[0] === 0 && loc[1] === 0 && age[0] === 18  && age[1] === 18 && route === '/search')
+        && rating[1] === 0 && localisation[0] === 0 && localisation[1] === 0 && age[0] === 18  && age[1] === 18 && route === '/search')
         {
             resetStateUsers();
             return ;
@@ -72,7 +71,7 @@ const BrowseContainer = (props) => {
 };
   return <Browsing users={users} handleChangeRating={handleChangeRating}
   handleChangeAge={handleChangeAge} handleChangeLoc={handleChangeLoc} handleChangeNbrTags={handleChangeNbrTags} rating={rating}
-  handleChangeTags={handleChangeTags} loc={loc} nbrTags={nbrTags} age={age} handleSubmit={handleSubmit} />;
+  handleChangeTags={handleChangeTags} localisation={localisation} nbrTags={nbrTags} age={age} handleSubmit={handleSubmit} />;
 };
 
 const mapStateToProps = (state) => ({

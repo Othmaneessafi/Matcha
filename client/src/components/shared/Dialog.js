@@ -25,7 +25,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function FullScreenDialog({ user }) {
-  console.log(user);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -117,7 +116,7 @@ export default function FullScreenDialog({ user }) {
               style={{ padding: "5%" }}
             >
               {user.images.map((img, i) => (
-                <Grid item sm={4}>
+                <Grid item key={i} sm={4}>
                   <img
                     src={img.path}
                     style={{ height: "100%", width: "100%" }}

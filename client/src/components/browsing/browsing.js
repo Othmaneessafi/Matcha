@@ -16,8 +16,7 @@ function valuetext(value) {
 export default function Browsing(props) {
   const {selectOptions,handle, users,handleSubmit,handleBlock,handleLike,handleDislike,
     handleViewProfile,handleChangeAge,handleChangeLoc,handleChangeRating,
-    handleChangeTags,handleChangeNbrTags,age,nbrTags,loc,rating} = props;
-
+    handleChangeTags,handleChangeNbrTags,age,nbrTags,localisation,rating} = props;
 
   return (
     <>
@@ -77,7 +76,7 @@ export default function Browsing(props) {
               Localisation
             </Typography>
             <Slider
-              value={loc}
+              value={localisation}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
@@ -103,11 +102,11 @@ export default function Browsing(props) {
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
-              onChange={handleChangeTags}
+              onChange={handleChangeNbrTags}
               step={1}
               marks
               min={1}
-              max={10}
+              max={5}
               color="secondary"
             />
           </Grid>

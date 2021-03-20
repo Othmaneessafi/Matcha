@@ -1,7 +1,7 @@
 import {SendEmail} from '../../actions/resetPasswordAction'
 import {connect} from "react-redux";
 import {reduxForm} from 'redux-form';
-import ForgotPassword from '../../components/Forgot'
+import ForgotPassword from '../../components/forgot'
 
 
 const validate = (values) => {

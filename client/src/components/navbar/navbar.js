@@ -9,14 +9,16 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Divider from "@material-ui/core/Divider";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import ChatIcon from "@material-ui/icons/Chat";
+import WhatshotIcon from '@material-ui/icons/Whatshot';
+import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
-    const [anchorEl, setanchorEl] = useState(null);
-    const {user, handleLogout} = props;
+  const [anchorEl, setanchorEl] = useState(null);
+  const { user, handleLogout } = props;
   const handleOpenMenu = (e) => {
     setanchorEl(e.currentTarget);
-    console.log(user);
   };
 
   const handleCloseMenu = () => {
@@ -25,43 +27,26 @@ export default function Navbar(props) {
 
   return (
     <>
-      <Grid container item sm={12} className="navbarContainer" >
-        <Grid item sm={12} className="navbar" container >
-          <Grid
-            item
-            container
-            sm={1}
-            className="logoContainer"
-            direction="column"
-            justify="center"
-            alignItems="center"
-          >
-            <h1 className="logo">Matcha</h1>
-          </Grid>
+      <Grid container item sm={12} className="navbarContainer">
+        <Grid item sm={12} className="navbar" container>
+          <Link to="/browsing" style={{ textDecoration: "none" }}>
+            <Grid
+              item
+              container
+              sm={1}
+              className="logoContainer"
+              direction="column"
+              justify="center"
+              alignItems="center"
+            >
+              <h1 className="logo">Matcha</h1>
+            </Grid>
+          </Link>
+          <Grid item sm={3}></Grid>
 
           <Grid item sm={3}></Grid>
 
-          <Grid
-            item
-            container
-            sm={3}
-            className="searchContainer"
-            direction="column"
-            justify="center"
-            alignItems="center"
-          >
-            <TextField
-              label="Search"
-              color="secondary"
-              className="search"
-              InputProps={{ className: "search" }}
-              InputLabelProps={{ className: "search" }}
-            />
-          </Grid>
-
-          <Grid item sm={3}></Grid>
-
-          <Grid item container sm={2} className="UserContainer" >
+          <Grid item container sm={2} className="UserContainer">
             <Grid
               item
               container
@@ -84,21 +69,23 @@ export default function Navbar(props) {
               alignItems="center"
               sm={7}
             >
-              { user && <Button
-                className="menuButton"
-                onClick={handleOpenMenu}
-                aria-controls="menu"
-              >
-                <h3 className="username" >{user.username}</h3>
-                <Avatar
-                  alt="User Image"
-                  src="https://images.pexels.com/photos/6652933/pexels-photo-6652933.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                />
-              </Button>}
+              {user && (
+                <Button
+                  className="menuButton"
+                  onClick={handleOpenMenu}
+                  aria-controls="menu"
+                >
+                  <h3 className="username">{user.username}</h3>
+                  <Avatar
+                    alt="User Image"
+                    src="https://images.pexels.com/photos/6652933/pexels-photo-6652933.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                  />
+                </Button>
+              )}
             </Grid>
           </Grid>
         </Grid>
-        </Grid>
+      </Grid>
       <Menu
         id="menu"
         className="navMenu"
@@ -107,22 +94,42 @@ export default function Navbar(props) {
         onClose={handleCloseMenu}
         getContentAnchorEl={null}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
+          vertical: "bottom",
+          horizontal: "center",
         }}
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
+          vertical: "top",
+          horizontal: "center",
         }}
       >
         <MenuItem className="menuItem">
           <AccountCircleIcon />
-          My Profile
+          <Link to="/profile" style={{ textDecoration: "none" }}>
+            My Profile
+          </Link>
+        </MenuItem>
+        <Divider className="divider" light />
+        <MenuItem className="menuItem">
+          <ChatIcon />
+          <Link to="/chat" style={{ textDecoration: "none" }}>
+            Chat
+          </Link>
+        </MenuItem>
+        <Divider className="divider" light />
+        <MenuItem className="menuItem">
+          <WhatshotIcon />
+          <Link to="/profile" style={{ textDecoration: "none" }}>
+            Activity
+          </Link>
         </MenuItem>
         <Divider className="divider" light />
         <MenuItem className="menuItem">
           <ExitToAppIcon />
-          {user && <Button color="primary" onClick={handleLogout}>Logout</Button>}
+          {user && (
+            <Button color="primary" onClick={handleLogout}>
+              Logout
+            </Button>
+          )}
         </MenuItem>
       </Menu>
     </>

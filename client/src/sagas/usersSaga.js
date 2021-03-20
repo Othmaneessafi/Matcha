@@ -17,7 +17,6 @@ export const getUsers = function* getUsers(data) {
   try {
     const user = yield select((state) => state.user);
     const token = yield select((state) => state.user.token);
-    console.log(data);
     const response = yield call(
       request,
       {

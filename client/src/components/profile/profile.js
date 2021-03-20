@@ -3,10 +3,8 @@ import "./profile.css";
 import Grid from "@material-ui/core/Grid";
 import { Field } from "redux-form";
 import Button from "@material-ui/core/Button";
-// import profileImage from "./img/love.svg";
-// import { Link } from "react-router-dom";
+import Navbar from "../../containers/Navbar";
 import textField from "../shared/TextField";
-// import Axios from "axios";
 
 export default function Profile(props) {
   const { handleSubmit, user } = props;
@@ -18,6 +16,7 @@ export default function Profile(props) {
   console.log(user);
   return (
     <>
+    <Navbar />
       <Grid
         container
         className="profilContainer"
