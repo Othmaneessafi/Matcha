@@ -8,7 +8,6 @@ import textField from "../shared/TextField";
 import TextField from "@material-ui/core/TextField";
 
 export default function Chat(props) {
-
   return (
     <>
       <Navbar />
@@ -26,8 +25,19 @@ export default function Chat(props) {
             className="chatImageContainer"
             container
             justify="center"
-          ></Grid>
-
+          >
+            <Grid item container sm={10} direction="column"  className="friends">
+              <div className="friendUsername">
+                <h1>Username</h1>
+              </div>
+              <div className="friendUsername">
+                <h1>Username</h1>
+              </div>
+              <div className="friendUsername">
+                <h1>Username</h1>
+              </div>
+            </Grid>
+          </Grid>
           <Grid
             item
             container
