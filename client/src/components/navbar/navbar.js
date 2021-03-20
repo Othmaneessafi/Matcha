@@ -16,13 +16,21 @@ import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   const [anchorEl, setanchorEl] = useState(null);
+  const [anchorEl1, setanchorEl1] = useState(null);
   const { user, handleLogout } = props;
   const handleOpenMenu = (e) => {
     setanchorEl(e.currentTarget);
   };
-
   const handleCloseMenu = () => {
     setanchorEl(null);
+  };
+
+  const handleOpenMenu1 = (e) => {
+    setanchorEl1(e.currentTarget);
+  };
+
+  const handleCloseMenu1 = () => {
+    setanchorEl1(null);
   };
 
   return (
@@ -55,11 +63,17 @@ export default function Navbar(props) {
               alignItems="center"
               sm={2}
             >
+              {user && (
+                <Button
+                  className="menuButton"
+                  onClick={handleOpenMenu1}
+                  aria-controls="menu"
+                >
               <img
                 src={NotificationImage}
                 alt="notification"
                 className="notifs"
-              />
+              /></Button>)}
             </Grid>
             <Grid
               item
@@ -130,6 +144,35 @@ export default function Navbar(props) {
               Logout
             </Button>
           )}
+        </MenuItem>
+      </Menu>
+
+      <Menu
+        id="menu"
+        className="navMenu"
+        anchorEl={anchorEl1}
+        open={Boolean(anchorEl1)}
+        onClose={handleCloseMenu1}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+      >
+        <MenuItem className="menuItem">
+          <Link to="/profile" style={{ textDecoration: "none" }}>
+            You have a message
+          </Link>
+        </MenuItem>
+        <Divider className="divider" light />
+        <MenuItem className="menuItem">
+          <Link to="/chat" style={{ textDecoration: "none" }}>
+            someone likes you
+          </Link>
         </MenuItem>
       </Menu>
     </>
