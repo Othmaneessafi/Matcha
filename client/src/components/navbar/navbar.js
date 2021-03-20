@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./navbar.css";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import NotificationImage from "./img/bell.svg";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -35,13 +34,13 @@ export default function Navbar(props) {
 
   return (
     <>
-      <Grid container item sm={12} className="navbarContainer">
-        <Grid item sm={12} className="navbar" container>
+        <Grid container item sm={12} className="navbar">
           <Link to="/browsing" style={{ textDecoration: "none" }}>
             <Grid
               item
               container
-              sm={1}
+              sm={12}
+              xs={2}
               className="logoContainer"
               direction="column"
               justify="center"
@@ -50,18 +49,15 @@ export default function Navbar(props) {
               <h1 className="logo">Matcha</h1>
             </Grid>
           </Link>
-          <Grid item sm={3}></Grid>
 
-          <Grid item sm={3}></Grid>
-
-          <Grid item container sm={2} className="UserContainer">
+          <Grid item container sm={2} xs={1} className="UserContainer" >
             <Grid
               item
               container
               direction="column"
               justify="center"
               alignItems="center"
-              sm={2}
+              sm={1}
             >
               {user && (
                 <Button
@@ -81,7 +77,8 @@ export default function Navbar(props) {
               direction="column"
               justify="center"
               alignItems="center"
-              sm={7}
+              sm={5}
+              xs={1}
             >
               {user && (
                 <Button
@@ -99,7 +96,6 @@ export default function Navbar(props) {
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
       <Menu
         id="menu"
         className="navMenu"

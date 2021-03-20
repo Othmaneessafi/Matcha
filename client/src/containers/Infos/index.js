@@ -22,10 +22,10 @@ const validate = (values) => {
     let age = today.getFullYear() - birthDate.getFullYear();
     let m = today.getMonth() - birthDate.getMonth();
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
+      age--;
     }
     return age;
-}
+  };
 
   requiredFields.forEach((field) => {
     if (!values[field] || !values[field].trim()) {
