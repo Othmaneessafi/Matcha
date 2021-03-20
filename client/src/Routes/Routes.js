@@ -11,6 +11,7 @@ import notFound from '../components/shared/404';
 import ResetPassword from '../containers/resetP';
 import ForgotPassword from '../containers/Forgot';
 import Chat from '../components/chat/chat';
+import Activity from '../components/activity/activity';
 
 
 const Routes = () => {
@@ -22,6 +23,7 @@ const Routes = () => {
                 <Route exact path="/profile" component={Profile}/>
                 <Route exact path="/infos" component={Infos}/>
                 <Route exact path="/chat" component={Chat}/>
+                <Route exact path="/activity" component={Activity}/>
                 <Route exact path="/confirme/:token" component={confirme}/>
                 <Route exact path="/resetPassword/:token"  component={ResetPassword}/>
                 <Route exact path="/forgotPassword"  component={ForgotPassword}/>

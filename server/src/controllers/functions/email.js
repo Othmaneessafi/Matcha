@@ -4,13 +4,13 @@ module.exports = {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'sifeddineilyass@gmail.com',
-                pass: 'tgsxcjeduwchxlim'
+                user: 'matcha.oessafi.smoudene@gmail.com',
+                pass: '123455Matcha'
             }
         });
         const url = `http://localhost:3000/confirmation/${token}`;
         var mailOptions = {
-            from: 'sifeddineilyass@gmail.com',
+            from: 'matcha.oessafi.smoudene@gmail.com',
             to: email,
             subject: 'Confirm your account',
             html: `<p>Please click to verify your email</p><button style="background-color:'#f50057'"><a href="${url}">Click me</a></button>`
@@ -27,13 +27,13 @@ module.exports = {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'sifeddineilyass@gmail.com',
-                pass: 'tgsxcjeduwchxlim'
+                user: 'matcha.oessafi.smoudene@gmail.com',
+                pass: '123455Matcha'
             }
         });
         const url = `http://localhost:3000/resetPassword/${token}`;
         var mailOptions = {
-            from: 'sifeddineilyass@gmail.com',
+            from: 'matcha.oessafi.smoudene@gmail.com',
             to: email,
             subject: 'Reset your password',
             html: `<p>Please click to verify your email</p><button style="background-color:'#f50057'"><a href="${url}">Click me</a></button>`

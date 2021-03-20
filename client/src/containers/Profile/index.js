@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
 
 
+
 const mapStateToProps = (state) => ({
   form: state.form,
   status: state.infos.status,
@@ -11,7 +12,7 @@ const mapStateToProps = (state) => ({
   Tags: state.infos.selectTags,
   loadingTags: state.infos.selectLoading,
   erroTags: state.infos.error,
-  user : state.user
+  user : state.user,
 });
 const mapDispatchToProps = {
   infosAction: InfosAction,

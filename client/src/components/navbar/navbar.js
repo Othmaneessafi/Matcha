@@ -128,7 +128,7 @@ export default function Navbar(props) {
         <Divider className="divider" light />
         <MenuItem className="menuItem">
           <WhatshotIcon />
-          <Link to="/profile" style={{ textDecoration: "none" }}>
+          <Link to="/activity" style={{ textDecoration: "none" }}>
             Activity
           </Link>
         </MenuItem>

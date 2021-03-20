@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Cards from "../Cards/Cards";
+import Cards from "../cards/Cards";
 import Navbar from "../../containers/Navbar";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
