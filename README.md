@@ -34,3 +34,22 @@ cd server/database && and sh index.sh #to launch db migration with 500+ users
 cd server && npm run devStart
 cd client && serve -s build -l [PORT]
 ```
+
+# Screenshots
+
+<img width="2560" alt="Screen Shot 2021-03-29 at 12 31 01 PM" src="https://user-images.githubusercontent.com/44867969/112869787-72891980-90b5-11eb-998d-f0c754a0b89c.png">
+
+<img width="2560" alt="Screen Shot 2021-03-29 at 12 31 19 PM" src="https://user-images.githubusercontent.com/44867969/112869798-76b53700-90b5-11eb-994b-81f64f1e35a4.png">
+
+<img width="2560" alt="Screen Shot 2021-03-29 at 12 31 43 PM" src="https://user-images.githubusercontent.com/44867969/112869828-7ddc4500-90b5-11eb-9dce-92ce650cc89b.png">
+
+<img width="2560" alt="Screen Shot 2021-03-29 at 12 34 38 PM" src="https://user-images.githubusercontent.com/44867969/112870002-a7956c00-90b5-11eb-8172-96c987e67c04.png">
+
+<img width="2560" alt="Screen Shot 2021-03-29 at 12 35 17 PM" src="https://user-images.githubusercontent.com/44867969/112870019-ab28f300-90b5-11eb-87e2-2c89ae4ad1f5.png">
+
+<img width="2560" alt="Screen Shot 2021-03-29 at 12 35 28 PM" src="https://user-images.githubusercontent.com/44867969/112870030-ae23e380-90b5-11eb-9304-c7f6b8261d2a.png">
+
+<img width="2559" alt="Screen Shot 2021-03-29 at 12 35 39 PM" src="https://user-images.githubusercontent.com/44867969/112870079-bb40d280-90b5-11eb-89c9-b097afb8dc4d.png">
+
+<img width="2560" alt="Screen Shot 2021-03-29 at 1 03 27 PM" src="https://user-images.githubusercontent.com/44867969/112870128-c8f65800-90b5-11eb-8de5-85347afe6293.png">
+
