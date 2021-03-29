@@ -53,3 +53,7 @@ cd client && serve -s build -l [PORT]
 
 <img width="2560" alt="Screen Shot 2021-03-29 at 1 03 27 PM" src="https://user-images.githubusercontent.com/44867969/112870128-c8f65800-90b5-11eb-8de5-85347afe6293.png">
 
+<img width="2560" alt="Screen Shot 2021-03-29 at 12 56 03 PM" src="https://user-images.githubusercontent.com/44867969/112870470-27bbd180-90b6-11eb-8de9-3ef8e6cb568a.png">
+
+<img width="2544" alt="Screen Shot 2021-03-29 at 12 57 59 PM" src="https://user-images.githubusercontent.com/44867969/112870476-29859500-90b6-11eb-875c-60e7df174a36.png">
+
