@@ -28,8 +28,8 @@
 
 # Running the app
 ```
-cd client && yarn install
-cd server && yarn install
+cd client && npm install
+cd server && npm install
 cd server/database && and sh index.sh #to launch db migration with 500+ users
 cd server && npm run devStart
 cd client && serve -s build -l [PORT]
@@ -56,6 +56,11 @@ cd client && serve -s build -l [PORT]
 
 ## Done Page
 <img width="2559" alt="Screen Shot 2021-03-29 at 12 35 39 PM" src="https://user-images.githubusercontent.com/44867969/112870079-bb40d280-90b5-11eb-89c9-b097afb8dc4d.png">
+
+## Browsing Page
+<img width="2545" alt="Screen Shot 2021-03-29 at 12 39 44 PM (1)" src="https://user-images.githubusercontent.com/44867969/112871639-5b4b2b80-90b7-11eb-82f1-91cf2e2aa4a2.png">
+<img width="2545" alt="Screen Shot 2021-03-29 at 12 41 36 PM" src="https://user-images.githubusercontent.com/44867969/112871717-7453dc80-90b7-11eb-8285-95cab186aa28.png">
+
 
 ## Profile Page
 <img width="2560" alt="Screen Shot 2021-03-29 at 1 03 27 PM" src="https://user-images.githubusercontent.com/44867969/112870128-c8f65800-90b5-11eb-8de5-85347afe6293.png">
