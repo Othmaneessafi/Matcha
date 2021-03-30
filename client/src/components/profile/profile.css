@@ -7,6 +7,7 @@
   height: 70vh !important;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   animation: slideRight 0.8s;
+  font-size: auto !important;
 }
 
 @keyframes slideRight {
@@ -28,12 +29,11 @@
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  height: 100% !important;
-  padding: 10px!important;
+
+  /* padding: 10px!important; */
 }
 
 .profileUserImage {
-  height: 50%;
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -54,6 +54,7 @@
 .profileImage {
   width: 70%;
   height: auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   animation: fadeIn 1s;
   transition: width 1s;
 }
@@ -100,9 +101,6 @@
 }
 
 @media screen and (max-width: 1280px) {
-  .body {
-    overflow: none;
-  }
   .profileImageContainer {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;

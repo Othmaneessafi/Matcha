@@ -3,6 +3,7 @@ import {push} from "react-router-redux";
 import {resetState} from '../actions/resetStateAction';
 import { ResetPasswordSuccess, ResetPasswordError, SendEmailSuccess, SendEmailError} from "../actions/resetPasswordAction";
 import axios from 'axios';
+import  {setAlertAction } from '../actions/alertAction';
 
 const resetPass =
   function *resetPass ({data}) {
@@ -18,10 +19,14 @@ const resetPass =
       }
       yield delay(4000);
       yield put(resetState());
-      yield put(push('/login'));
+      yield put(push('/signin'));
     }catch (error) {
       if (error.response) {
         yield put(ResetPasswordError('Error, please retry'));
+        yield put(setAlertAction({
+          text: 'Something wrong happened',
+          color: 'error'
+        }));
       }
     }
 };
@@ -37,12 +42,20 @@ function *sendEmailS (data) {
     else if(response.data.error === 'Email not found')
     {
       yield put(SendEmailError('Email not found'));
+      yield put(setAlertAction({
+        text: 'Email not found',
+        color: 'error'
+      }));
     }
     yield delay(4000);
     yield put(resetState());
   }catch (error) {
     if (error.response) {
       yield put(SendEmailError('Error sending the email, please retry'));
+      yield put(setAlertAction({
+        text: 'Error sending the email, please retry',
+        color: 'error'
+      }));
     }
   }
 };

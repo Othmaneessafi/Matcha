@@ -2,7 +2,7 @@
     width: 300px;
     height: 370px;
     background: transparent!important;
-    border-radius: 10px;
+    border-radius: 15px;
     background-size: cover;
     background-position: center center;
     box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
@@ -15,10 +15,11 @@
   
 .card:hover {
     box-shadow: 0px 30px 100px -10px rgba(0, 0, 0, 0.4);
+
 }
 
 .card:hover .cardUsername{
-    color: red;
+    color: grey;
     text-shadow: 4px 2px 7px black;
 }
 
@@ -47,6 +48,7 @@
 
 .cardImage {
     height: 100%;
+    width: 100%;
     object-fit: cover;
     border-radius: 9px;
 }
@@ -66,26 +68,25 @@
     display: none;
     position: relative;
     background-color: whitesmoke;
-    color: orangered;
+    color: grey;
     border-radius: 50%;
     padding: 5px;
     box-shadow: 0 1px 10px 0 rgba(0, 20, 20, 0.1);
     transition: 0.2s transform;
-    /* display: flex; */
-    /* justify-content: center;
-    align-items: center; */
     width: 40px;
     height: 40px;
-    border: 1px solid orangered;
+    border: 1px solid grey;
 }
 
 .cardIcons:hover {
-    color: black;
+    color: orangered;
     top: -5%;
 }
 
 .card:hover .cardImage{
     height: 85%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     transition: height 0.5s;
 }
 .card:hover .cardIcons{

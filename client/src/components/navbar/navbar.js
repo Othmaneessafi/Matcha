@@ -1,101 +1,144 @@
 import React, { useState } from "react";
 import "./navbar.css";
+import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import NotificationImage from "./img/bell.svg";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Divider from "@material-ui/core/Divider";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ChatIcon from "@material-ui/icons/Chat";
-import WhatshotIcon from '@material-ui/icons/Whatshot';
+import WhatshotIcon from "@material-ui/icons/Whatshot";
 import { Link } from "react-router-dom";
+import Badge from "@material-ui/core/Badge";
+import NotificationsIcon from "@material-ui/icons/Notifications";
 
-export default function Navbar(props) {
-  const [anchorEl, setanchorEl] = useState(null);
+const StyledMenu = withStyles({
+  paper: {
+    border: "1px solid #d3d4d5",
+  },
+})((prop) => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: "bottom",
+      horizontal: "center",
+    }}
+    transformOrigin={{
+      vertical: "top",
+      horizontal: "center",
+    }}
+    {...prop}
+  />
+));
+
+const Navbar = (props) => {
+  const {
+    user,
+    unseenNotif,
+    handleNotifListOpen,
+    handleLogout,
+    images,
+  } = props;
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl1, setanchorEl1] = useState(null);
-  const { user, handleLogout } = props;
   const handleOpenMenu = (e) => {
-    setanchorEl(e.currentTarget);
+    setAnchorEl(e.currentTarget);
   };
   const handleCloseMenu = () => {
-    setanchorEl(null);
+    setAnchorEl(null);
   };
-
-  const handleOpenMenu1 = (e) => {
-    setanchorEl1(e.currentTarget);
-  };
-
-  const handleCloseMenu1 = () => {
+  const handleCloseMenutwo = () => {
+    handleLogout();
     setanchorEl1(null);
   };
 
   return (
     <>
-        <Grid container item sm={12} className="navbar">
+      <Grid container className="navbar">
+        <Grid
+          item
+          container
+          lg={2}
+          xs={12}
+          className="logoContainer"
+          direction="column"
+          justify="center"
+          alignItems="center"
+
+        >
           <Link to="/browsing" style={{ textDecoration: "none" }}>
-            <Grid
-              item
-              container
-              sm={12}
-              xs={2}
-              className="logoContainer"
-              direction="column"
-              justify="center"
-              alignItems="center"
-            >
+            <Grid item xs={6} lg={12} >
               <h1 className="logo">Matcha</h1>
             </Grid>
           </Link>
-
-          <Grid item container sm={2} xs={1} className="UserContainer" >
-            <Grid
-              item
-              container
-              direction="column"
-              justify="center"
-              alignItems="center"
-              sm={1}
-            >
-              {user && (
-                <Button
-                  className="menuButton"
-                  onClick={handleOpenMenu1}
-                  aria-controls="menu"
+        </Grid>
+        <Grid item lg={8} ></Grid>
+        <Grid item container xs={12} lg={1} className="UserContainer">
+          <Grid
+            item
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            lg={5}
+            xs={6}
+            
+          >
+            {user && (
+              <Button
+                className="menuButton"
+                onClick={handleNotifListOpen}
+                aria-controls="menu"
+              >
+                <Badge
+                  className="notifs"
+                  badgeContent={unseenNotif}
+                  color="secondary"
                 >
-              <img
-                src={NotificationImage}
-                alt="notification"
-                className="notifs"
-              /></Button>)}
-            </Grid>
-            <Grid
-              item
-              container
-              direction="column"
-              justify="center"
-              alignItems="center"
-              sm={5}
-              xs={1}
-            >
-              {user && (
-                <Button
-                  className="menuButton"
-                  onClick={handleOpenMenu}
-                  aria-controls="menu"
-                >
-                  <h3 className="username">{user.username}</h3>
-                  <Avatar
-                    alt="User Image"
-                    src="https://images.pexels.com/photos/6652933/pexels-photo-6652933.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                  />
-                </Button>
-              )}
-            </Grid>
+                  <NotificationsIcon />
+                </Badge>
+              </Button>
+            )}
+          </Grid>
+          <Grid
+            item
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            lg={5}
+            xs={6}
+          >
+            {user && (
+              <Button
+                className="menuButton"
+                onClick={handleOpenMenu}
+                aria-controls="menu"
+              >
+                <h3 className="username">{user.username}</h3>
+                {images.isImages &&
+                  images.images.map((img) => {
+                    return (
+                      <Grid key={img.id}>
+                        {img.isProfilePic ? (
+                          <Avatar
+                            alt="User Image"
+                            src={`http://localhost:3001/${img.path}`}
+                          />
+                        ) : null}
+                      </Grid>
+                    );
+                  })}
+              </Button>
+            )}
           </Grid>
         </Grid>
+        <Grid item lg={1}  ></Grid>
+      </Grid>
       <Menu
         id="menu"
         className="navMenu"
@@ -148,7 +191,7 @@ export default function Navbar(props) {
         className="navMenu"
         anchorEl={anchorEl1}
         open={Boolean(anchorEl1)}
-        onClose={handleCloseMenu1}
+        onClose={handleCloseMenutwo}
         getContentAnchorEl={null}
         anchorOrigin={{
           vertical: "bottom",
@@ -173,4 +216,5 @@ export default function Navbar(props) {
       </Menu>
     </>
   );
-}
+};
+export default Navbar;

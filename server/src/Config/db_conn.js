@@ -1,31 +1,11 @@
 const mysql = require("mysql");
 
-// const con = mysql.createConnection({
-//     host: "localhost",
-//     // port: "3306",
-//     user: "root",
-//     password: "",
-//     database: "matcha",
-// });
-
 const con = mysql.createConnection({
-    host: "192.168.99.127",
+    host: "192.168.99.100",
     port: "3306",
     user: "tibicha",
     password: "tibicha",
     database: "matcha",
 });
-// con.connect(function (err) {
-//     if (err) throw err;
-//     console.log("Connected!");
 
-// });
-
-// app.get('/',(req,res)=>{
-//     con.query('CREATE DATABASE IF NOT EXISTS test',(err,result)=>{
-//         if (err)
-//             console.log(err)
-//     })
-//     res.send("running !")
-// })
 module.exports = con;

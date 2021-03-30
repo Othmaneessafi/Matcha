@@ -1,39 +1,36 @@
+import React, { useEffect } from 'react';
+import {connect} from "react-redux";
 import Profile from "../../components/profile/profile";
-import { InfosAction, createTag } from "../../actions/infosAction";
-import { connect } from "react-redux";
-import { reduxForm } from "redux-form";
+import {getTags} from '../../actions/infosAction'
+import {getPic} from '../../actions/uploadAction';
+import {resetStep} from '../../actions/resetStateAction';
 
+const ViewProfileContainer = (props) => {
+    const {user,images, getPic, getTags, resetStep} = props;
+    useEffect(() => {
+        if(user){
+            getPic(user.id);
+            getTags();
+        }
+    }, [getPic, getTags, user]);
+    return (
+        <div>
+            <Profile resetStep={resetStep} user={user} images={images}/>
+        </div>
+    )
+}
 
-
-const mapStateToProps = (state) => ({
-  form: state.form,
-  status: state.infos.status,
-  error: state.infos.error,
-  Tags: state.infos.selectTags,
-  loadingTags: state.infos.selectLoading,
-  erroTags: state.infos.error,
-  user : state.user,
+const mapStateToProps = (state) => (
+{
+    "user" : state.user,
+    "images" : state.images,
 });
+
 const mapDispatchToProps = {
-  infosAction: InfosAction,
-  createTag: createTag,
+    getTags : getTags,
+    getPic: getPic,
+    resetStep: resetStep
 };
-const mergeProps = (stateProps, dispatchProps, otherProps) => ({
-  ...stateProps,
-  ...dispatchProps,
-  ...otherProps,
-  handleSubmit: otherProps.handleSubmit((form) => {
-    dispatchProps.infosAction(form);
-  }),
-});
 
-const connectedProfileContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  mergeProps
-)(Profile);
-const ProfileContainer = reduxForm({
-  form: "profile",
-})(connectedProfileContainer);
 
-export default ProfileContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(ViewProfileContainer);

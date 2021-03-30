@@ -1,0 +1,10 @@
+{
+    "dev": {
+    "host": "192.168.99.100",
+    "user": "tibicha",
+    "password": "tibicha",
+    "database": "matcha",
+    "driver": "mysql",
+    "multipleStatements": true
+    },"sql-file": true
+}

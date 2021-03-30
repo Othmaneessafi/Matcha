@@ -5,7 +5,7 @@ createTag = async (req, res) => {
     user.TagCreatedNbr(id)
     .then(ressultt => {
         if(ressultt[0].n > 5){
-            res.send({ created: false, error: 'You can not create more than 6 tags !' });
+            res.send({ created: false, error: 'You can not create more than 5 tags !' });
         }
         else{
             if(tag.length < 20)

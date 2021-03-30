@@ -1,3 +1,4 @@
+  
 const bcrypt = require("bcrypt");
 const crypto = require('crypto');
 const uti = require('../util/lib');
@@ -6,7 +7,7 @@ const sendmail = require('./sendmail');
 const saltRounds = 10;
 
 Register = async (req, res) => {
-    const {username, email, password, confirmPassword} = req.body;
+    const {firstname, lastname, username, email, password, confirmPassword} = req.body;
     let GetUserByUsername = await user.getUser('GetUserByUsername', username);
     let GetUserByEmail = await user.getUser('GetUserByEmail', email);
     let data = {
@@ -15,20 +16,20 @@ Register = async (req, res) => {
         errEmail: null,
     };
     if (GetUserByEmail) {
-        data.errEmail = 'Email already exists';
+        data.errEmail = 'Another account is using this email';
     }
     if (GetUserByUsername) {
-        data.errUsername = 'Username already exists';
+        data.errUsername = 'Another account is using this username';
     }
-    if (!uti.isUsername(username) || !uti.isEmail(email) || GetUserByEmail || GetUserByUsername || !uti.isPassword(password, confirmPassword)) {
+    if (!uti.isFirstname(firstname) || !uti.isLastname(lastname) || !uti.isUsername(username) || !uti.isEmail(email) || GetUserByEmail || GetUserByUsername || !uti.isPassword(password, confirmPassword)) {
         data.isValid = false;
     }
     else {
         let hashPassword = await bcrypt.hash(password, saltRounds);
-        const token = crypto.randomBytes(64).toString('hex');
-        user.Register(username, email, hashPassword);
-        user.Updattoken(email, token);
-        sendmail.sendEmail(email, token);
+        const vfToken = crypto.randomBytes(64).toString('hex');
+        user.Register(firstname, lastname, username, email, hashPassword);
+        user.UpdatvfToken(email, vfToken);
+        sendmail.sendEmail(email, vfToken);
     }
     res.send(data);
 };

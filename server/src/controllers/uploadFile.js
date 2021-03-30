@@ -10,10 +10,10 @@ const checkFileType = (file, cb) => {
 }
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './pics')
+      cb(null, './pics/')
     },
     filename: (req, file, cb) => {
-      cb(null, new Date().toISOString() + file.originalname)
+      cb(null, Date.now() + file.originalname)
     },
   })
   const upload = multer({

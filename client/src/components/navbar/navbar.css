@@ -7,9 +7,9 @@
   );
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   height: auto;
-  width: 100%;
+  width: 100%!important;
   margin: 0;
-  padding: 0;
+  padding: 10px;
   z-index: 110;
 }
 
@@ -19,6 +19,7 @@
 
 .logo {
   color: whitesmoke;
+  font-size: 10vw;
 }
 
 .search {
@@ -34,55 +35,8 @@
 .notifs {
   width: 25px;
   height: 25px;
+  margin-right: 45px;
   color: whitesmoke !important;
-}
-
-.sidebar {
-  background: rgb(65, 64, 65);
-  background: linear-gradient(
-    143deg,
-    rgba(65, 64, 65, 1) 0%,
-    rgba(30, 29, 32, 1) 69%
-  );
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  height: 100vh!important;
-  width: 1.8vw !important;
-  overflow: auto;
-  z-index: 100;
-}
-
-.sidebar:hover {
-  width: 8vw !important;
-}
-
-.sidebar:hover .sideNames {
-  display: block;
-}
-
-.sideBrowsing {
-  height: 5vh;
-  margin: 0 !important;
-  color: #ff5733;
-  font-size: 10px;
-}
-
-.sidebarContainer {
-  height: 20%;
-}
-
-.sideNames {
-  display: none;
-  font-size: 20px;
-}
-.emptyGrid {
-  height: 2vh;
-}
-.divider {
-  width: 100%;
-}
-
-.sideBrowsing:hover {
-  color: white;
 }
 
 .username:hover {

@@ -2,7 +2,9 @@ import React from "react";
 import { useSpring, animated } from "react-spring";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import BlockIcon from "@material-ui/icons/Block";
-import StarIcon from '@material-ui/icons/Star';
+import StarIcon from "@material-ui/icons/Star";
+import ThumbDownIcon from '@material-ui/icons/ThumbDown';
+import ReportIcon from '@material-ui/icons/Report';
 import Dialog from "../shared/Dialog";
 import "./Cards.css";
 import { Grid } from "@material-ui/core";
@@ -10,22 +12,14 @@ import { Grid } from "@material-ui/core";
 const calc = (x, y) => [0, 0, 1.1];
 const trans = (x, y, s) => ` scale(${s})`;
 
-const capitalize = (str) =>{
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-const Age = (birthday) => {
-  let today = new Date();
-  let birthDate = new Date(birthday);
-  let age = today.getFullYear() - birthDate.getFullYear();
-  let m = today.getMonth() - birthDate.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-  }
-  return age;
-}
-
-export default function Cards({ user }) {
+export default function Cards({
+  user,
+  handleLike,
+  handleViewProfile,
+  handleBlock,
+  handleDislike,
+  handleReport,
+}) {
 
   const [props, set] = useSpring(() => ({
     xys: [0, 0, 1],
@@ -34,7 +28,7 @@ export default function Cards({ user }) {
 
   const stars = [];
   for (let i = 0; i < user.user.rating; i++) {
-    stars.push(<StarIcon key={i} />); 
+    stars.push(<StarIcon key={i} />);
   }
   return (
     <animated.div
@@ -46,46 +40,80 @@ export default function Cards({ user }) {
         margin: 10,
       }}
     >
-      <img src={user.images[0] ? user.images[0].path : ''} alt="imgs" className="cardImage shadow" />
+        {user.images[0] ? (
+               <img src={`http://localhost:3001/${user.images[0].path}`} alt="imgs" className="cardImage shadow" />
+            ) : console.log("error")}
       <div className="cardInfos">
-        <h1 className="cardUsername">{capitalize(user.user.username)}, {Age(user.user.birth_date)}</h1>
+        <h1 className="cardUsername">
+          {user.user.username}, {user.user.age}
+        </h1>
         <div className="CardDescrtion">{stars}</div>
       </div>
-      <Grid container className="cardChoice">
+      <Grid container className="cardChoice" justify="center" alignItems="center">
+        {user.user.like !== 'iLike' ?  (
         <Grid
           item
           container
-          sm={4}
+          xs={2}
+          sm={3}
           direction="row"
           justify="center"
           alignItems="center"
         >
           <div className="cardIcons">
-            <FavoriteIcon />
+            <FavoriteIcon onClick={(e) => handleLike(user.user.id)} />
+          </div>
+        </Grid>) : (
+        <Grid
+          item
+          container
+          sm={3}
+          xs={3}
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+          <div className="cardIcons">
+            <ThumbDownIcon  onClick={(e) => handleDislike(user.user.id)} />
+          </div>
+        </Grid>)}
+        <Grid
+          item
+          container
+          sm={3}
+          xs={3}
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+          <div className="cardIcons">
+            <BlockIcon  onClick={(e) => handleBlock(user.user.id)} />
           </div>
         </Grid>
         <Grid
           item
           container
-          sm={4}
+          sm={3}
+          xs={3}
           direction="row"
           justify="center"
           alignItems="center"
         >
           <div className="cardIcons">
-            <BlockIcon />
+            <ReportIcon  onClick={(e) => handleReport(user.user.id)} />
           </div>
         </Grid>
         <Grid
           item
           container
-          sm={4}
+          sm={3}
+          xs={3}
           direction="row"
           justify="center"
           alignItems="center"
         >
-          <div className="cardIcons">
-            <Dialog userId={user.user.id} user={user} />
+          <div className="cardIcons" onClick={(e) => handleViewProfile(user.user)}>
+            <Dialog userId={user.user.id} user={user}  />
           </div>
         </Grid>
       </Grid>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 import RadioGroup from "../shared/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
@@ -7,6 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Field } from "redux-form";
 import renderField from "../shared/TextField";
 import CreatableSelect from 'react-select/creatable';
+import * as Core from "@material-ui/core";
+import Flash from '../shared/Alert';
 
 const useStyles = makeStyles({
   root: {
@@ -18,35 +20,11 @@ const useStyles = makeStyles({
 
 export default function Infos(props) {
   const classes = useStyles();
-  const [tags, setTag] = useState([]);
-  const [tagvalue, setTagValue] = useState("");
-  const {selectLoading, selectTags, createTag } = props;
+  const { handleSubmit, selectLoading, selectTags, selectError, createTag } = props;
 
-  // const handleTagChange = (e) => {
-  //   setTagValue(e.target.value);
-  // };
   const handleCreate = (value) => {
     createTag(value);
   }
-  // const handleDeleteTag = (e) => {
-  //   console.log(tags[e.target.id].id);
-  //   console.log(tags);
-  //   setTag(tags.filter((tg) => tg.id !== tags[e.target.id].id));
-  // };
-
-  const handleTagAdd = (fields, e) => {
-    if (tagvalue !== "" && tags.length < 5) {
-      setTag([
-        ...tags,
-        {
-          id: tags.length,
-          name: tagvalue,
-        },
-      ]);
-    }
-    fields.push({ id: fields.length, name: tagvalue });
-    console.log();
-  };
 
   const selectField = ({ input, meta: { touched, error } }) => (
     <div>
@@ -58,23 +36,18 @@ export default function Infos(props) {
         isClearable={false}
         options={selectTags}
         onBlur={() => input.onBlur(input.value)}
-        onChange={(value) => {
-          input.onChange(value);
-        }}
+        onChange={(value) => { input.onChange(value) }}
         onCreateOption={handleCreate}
       />
-      <div>
-        {touched && error && (
-          <div style={{ fontSize: "12px", color: "rgb(244, 67, 54)" }}>
-            {error}
-          </div>
-        )}
+
+      <div>{(touched && error) &&
+        <div style={{ 'fontSize': '12px', 'color': 'rgb(244, 67, 54)' }}>{error}</div>}
       </div>
     </div>
   );
-
   return (
     <div className="infosContainer">
+      {selectError && <Flash variant="error" msg={selectError} />}
       <Grid container spacing={10}>
         <Grid item container sm={12}>
           <Grid item sm={5}>
@@ -87,6 +60,7 @@ export default function Infos(props) {
                 classes: {
                   root: classes.root,
                 },
+                className: "loginInput"
               }}
               InputLabelProps={{ className: "loginInputLabel" }}
             />
@@ -102,6 +76,7 @@ export default function Infos(props) {
                 classes: {
                   root: classes.root,
                 },
+                className: "loginInput"
               }}
               InputLabelProps={{ className: "loginInputLabel" }}
             />
@@ -117,6 +92,7 @@ export default function Infos(props) {
               classes: {
                 root: classes.root,
               },
+              className: "loginInput"
             }}
             InputLabelProps={{ className: "loginInputLabel" }}
           />
@@ -124,24 +100,25 @@ export default function Infos(props) {
 
         <Grid item container sm={12}>
           <Grid item sm={4}>
-            <FormControl>
-              <FormLabel color="secondary" style={{ color: "grey" }}>
+            <FormControl style={{ color: "grey" }}>
+              <FormLabel color="secondary">
                 Gender
               </FormLabel>
               <Field
                 component={RadioGroup}
                 name="gender"
                 options={[
-                  { title: "Men ", value: "men" },
-                  { title: "Women", value: "women" },
-                  { title: "Both", value: "both" },
+                  { title: "Male ", value: "male" },
+                  { title: "Female", value: "female" },
+                  { title: "Non-Binary", value: "non_binary" },
                 ]}
+                InputProps={{ className: "loginInput" }}
               />
             </FormControl>
           </Grid>
           <Grid item sm={4}>
-            <FormControl>
-              <FormLabel color="secondary" style={{ color: "grey" }}>
+            <FormControl style={{ color: "grey" }}>
+              <FormLabel color="secondary" >
                 Interested In
               </FormLabel>
               <Field
@@ -150,8 +127,9 @@ export default function Infos(props) {
                 options={[
                   { title: "Men ", value: "men" },
                   { title: "Women", value: "women" },
-                  { title: "Miiw", value: "miiw" },
+                  { title: "Both", value: "both" },
                 ]}
+                InputProps={{ className: "loginInput" }}
               />
             </FormControl>
           </Grid>
@@ -168,6 +146,7 @@ export default function Infos(props) {
                   shrink: true,
                   className: "loginInputLabel",
                 }}
+                InputProps={{ className: "loginInput" }}
               />
             </Grid>
             <Grid item sm={12}>
@@ -183,8 +162,12 @@ export default function Infos(props) {
               </Grid>
             </Grid>
           </Grid>
+          <Grid item container justify="center" xs={12}>
+            <Core.Button onClick={handleSubmit} variant="contained" type="submit" className={classes.button} name="submit" value="ok" >Next</Core.Button>
+          </Grid>
         </Grid>
       </Grid>
+      
     </div>
   );
 }

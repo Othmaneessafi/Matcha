@@ -153,13 +153,14 @@
 }
 .addBtn {
   color: grey;
-  /* border: 1px solid red; */
   width: 25px;
   position: relative;
   right: -10px;
   top: 10px;
   cursor: pointer;
+  margin: 2px;
 }
+
 
 .MapContainer {
   height: 45vh!important;

@@ -21,6 +21,7 @@ export default function (state = DEFAULT_STATE, action) {
     case DISLIKE_USER: {
       const dislike_user_id = action.dislike_user_id;
       let arr = [...state.users];
+      console.log(arr);
       for (var i = 0; i < arr.length; i++) {
         if (arr[i].user.id === parseInt(dislike_user_id)) {
           if (arr[i].user.like === "iLike") arr[i].user.like = null;

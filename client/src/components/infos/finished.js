@@ -1,6 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom"
 import Done from "./img/done.svg"
 
 export default function finished(props) {
@@ -15,7 +16,8 @@ export default function finished(props) {
             <h1 className="message">You completed your profile information successfully</h1>
         </Grid>
         <Grid item container sm={12} justify="center" alignItems="center">
-            <Button className="profileBtn" onClick={handle} >Done</Button>
+          <Link to="/browsing" >
+            <Button className="profileBtn" onClick={handle} >Done</Button></Link>
         </Grid>
       </Grid>
     </>

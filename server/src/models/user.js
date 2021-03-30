@@ -4,17 +4,16 @@ const SELECT = queries.SELECT;
 const INSERT = queries.INSERT;
 const UPDATE = queries.UPDATE;
 const DELETE = queries.DELETE;
-
+var jwt = require('jsonwebtoken');
 module.exports = {
-    Register: function (username, email, password) {
-        con.query(INSERT.AddUser, [username, email, password], (err, res) => {
+    Register: function (firstname, lastname, username, email, password) {
+        con.query(INSERT.AddUser, [firstname, lastname, username, email, password], (err, res) => {
             if (err) {
                 throw err;
             }
         });
     },
-
-    getUser:  function (type, value) {
+    getUser: function (type, value) {
         return new Promise((resolve, reject) => {
             con.query(SELECT[type], value, (err, res) => {
                 if (err)
@@ -22,7 +21,16 @@ module.exports = {
                 else {
                     const data = JSON.parse(JSON.stringify(res));
                     if (data[0]) {
-                        resolve(data[0]);
+
+                        this.getUserTags(data[0].id)
+                            .then(async (response) => {
+                                tags = response;
+                                (data[0].date_birthday) ? data[0].date_birthday = data[0].date_birthday.split('T')[0] : data[0].date_birthday;
+                                data[0].tags = tags;
+                                let token = await jwt.sign(data[0], 'SecretKey');
+                                data[0].token = token;
+                                resolve(data[0]);
+                            }).catch((error) => { console.log(error) })
                     } else {
                         resolve(null)
                     }
@@ -32,7 +40,7 @@ module.exports = {
     },
     getUsers: function (id) {
         return new Promise ((resolve, reject) => {
-            con.query(SELECT.GetUsers, [id,id,id,id], (err,res) => {
+            con.query(SELECT.GetUsers, [id], (err,res) => {
                 if(err)
                     reject(err);
                 else
@@ -42,23 +50,34 @@ module.exports = {
             });
         })
     },
-    update: function (type, value){
-        return new Promise ((resolve, reject) => {
-            con.query(UPDATE[type], value,(err,res) => {
-                if(err)
-                    reject (err);
+    notverfid: function (email) {
+        return new Promise((resolve, reject) => {
+            con.query(UPDATE.notverfid, email, (err, res) => {
+                if (err)
+                    reject(err);
                 else
-                    resolve (JSON.parse(JSON.stringify(res)));
+                    resolve(res);
             });
         })
     },
 
-    updateInfo: function (lastname, firstname, gender, Sexual_orientation, date_birthday, biography, id) {
-        return new Promise ((resolve, reject) => {
-            con.query(UPDATE.UpdateInfo, [lastname, firstname, gender, Sexual_orientation, date_birthday, biography, id], (err,res) => {
-                if(err)
+    update: function (type, value) {
+        return new Promise((resolve, reject) => {
+            con.query(UPDATE[type], value, (err, res) => {
+                if (err)
                     reject(err);
-                else{
+                else
+                    resolve(JSON.parse(JSON.stringify(res)));
+            });
+        })
+    },
+
+    updateInfo: function (lastname, firstname, gender, Sexual_orientation, date_birthday, Age, biography, id) {
+        return new Promise((resolve, reject) => {
+            con.query(UPDATE.UpdateInfo, [lastname, firstname, gender, Sexual_orientation, date_birthday, Age, biography, id], (err, res) => {
+                if (err)
+                    reject(err);
+                else {
                     resolve(res);
                 }
             });
@@ -66,11 +85,11 @@ module.exports = {
     },
 
     TagCreatedNbr: function (id) {
-        return new Promise ((resolve, reject) => {
-            con.query(SELECT.TagCreatedNbr, [id], (err,res) => {
-                if(err)
+        return new Promise((resolve, reject) => {
+            con.query(SELECT.TagCreatedNbr, [id], (err, res) => {
+                if (err)
                     reject(err);
-                else{
+                else {
                     const resArray = JSON.parse(JSON.stringify(res))
                     resolve(resArray);
                 }
@@ -79,11 +98,11 @@ module.exports = {
     },
 
     checkTags: function (tag) {
-        return new Promise ((resolve, reject) => {
-            con.query(SELECT.CheckTag, [tag], (err,res) => {
-                if(err)
+        return new Promise((resolve, reject) => {
+            con.query(SELECT.CheckTag, [tag], (err, res) => {
+                if (err)
                     reject(err);
-                else{
+                else {
                     const resArray = JSON.parse(JSON.stringify(res))
                     resolve(resArray);
                 }
@@ -92,11 +111,11 @@ module.exports = {
     },
 
     deleteUserTag: function (id) {
-        return new Promise ((resolve, reject) => {
-            con.query(DELETE.DeleteUserTags, [id], (err,res) => {
-                if(err)
+        return new Promise((resolve, reject) => {
+            con.query(DELETE.DeleteUserTags, [id], (err, res) => {
+                if (err)
                     reject(err);
-                else{
+                else {
                     resolve(res);
                 }
             });
@@ -104,11 +123,11 @@ module.exports = {
     },
 
     getTags: function () {
-        return new Promise ((resolve, reject) => {
-            con.query(SELECT.GetTags,(err,res) => {
-                if(err)
+        return new Promise((resolve, reject) => {
+            con.query(SELECT.GetTags, (err, res) => {
+                if (err)
                     reject(err);
-                else{
+                else {
                     const resArray = JSON.parse(JSON.stringify(res))
                     resolve(resArray);
                 }
@@ -116,23 +135,46 @@ module.exports = {
         })
     },
 
-    getTagId : function (tag) {
-        return new Promise ((resolve, reject) => {
-            con.query(SELECT.GetTagId, [tag], (err,res) => {
-                if(err)
+    getTagId: function (tag) {
+        return new Promise((resolve, reject) => {
+            con.query(SELECT.GetTagId, [tag], (err, res) => {
+                if (err)
                     reject(err);
-                else{
+                else {
                     const resArray = JSON.parse(JSON.stringify(res))
                     resolve(resArray);
                 }
             });
         })
     },
-
+    getUserTags: function (id) {
+        return new Promise((resolve, reject) => {
+            con.query(SELECT.GetUserTag, [id], (err, res) => {
+                if (err)
+                    reject(err);
+                else {
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    let options = [];
+                    Object.keys(resArray).forEach(function () {
+                        for (var i = 0; i < resArray.length; i++) {
+                            options[i] = {
+                                value: resArray[i].tag,
+                                label: resArray[i].tag,
+                            };
+                        }
+                    });
+                    if (options.length > 0)
+                        resolve(options);
+                    else
+                        resolve(null);
+                }
+            });
+        })
+    },
     insertUserTag: function (id, tag) {
-        return new Promise ((resolve, reject) => {
-            con.query(INSERT.InsertUserTag, [id, tag], (err,res) => {
-                if(err)
+        return new Promise((resolve, reject) => {
+            con.query(INSERT.InsertUserTag, [id, tag], (err, res) => {
+                if (err)
                     reject(err);
                 else
                     resolve(res);
@@ -141,42 +183,18 @@ module.exports = {
     },
 
     createTag: function (tag, id) {
-        return new Promise ((resolve, reject) => {
-            con.query(INSERT.CreateTag, [tag, id], (err,res) => {
-                if(err)
+        return new Promise((resolve, reject) => {
+            con.query(INSERT.CreateTag, [tag, id], (err, res) => {
+                if (err)
                     reject(err);
-                else{
+                else {
 
                     resolve(res);
                 }
             });
         })
     },
-    getUserInterests : function (id) {
-        return new Promise ((resolve, reject) => {
-            con.query(SELECT.GetUserInter, [id], (err,res) => {
-                if(err)
-                    reject(err);
-                else{
-                    const resArray = JSON.parse(JSON.stringify(res))
-                    let options = [];
-                    Object.keys(resArray).forEach(function()
-                    {
-                        for (var i = 0; i < resArray.length; i++) {
-                            options[i] = {
-                                value: resArray[i].interest,
-                                label: resArray[i].interest,
-                            };
-                        }
-                    });
-                    if(options.length > 0)
-                        resolve(options);
-                    else
-                        resolve(null);
-                }
-            });
-        })
-    },
+
     select: function (type, value) {
         return new Promise((resolve, reject) => {
             con.query(SELECT[type], value, (err, res) => {
@@ -187,7 +205,17 @@ module.exports = {
             });
         })
     },
-    Updattoken: function (email, token) {
+    delete: function (type, value) {
+        return new Promise((resolve, reject) => {
+            con.query(DELETE[type], value, (err, res) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(JSON.parse(JSON.stringify(res)));
+            });
+        })
+    },
+    UpdatvfToken: function (email, token) {
         return new Promise((resolve, reject) => {
             con.query(UPDATE.UpToken, [token, email], (err, res) => {
                 if (err)
@@ -217,13 +245,23 @@ module.exports = {
             });
         })
     },
-    ResetPassword : function (password, token) {
-        return new Promise ((resolve, reject) => {
-            con.query(UPDATE.ResetPassword, [password, token],(err,res) => {
-                if(err)
-                    reject (err);
+    ResetPassword: function (password, token) {
+        return new Promise((resolve, reject) => {
+            con.query(UPDATE.ResetPassword, [password, token], (err, res) => {
+                if (err)
+                    reject(err);
                 else
-                    resolve (res);
+                    resolve(res);
+            });
+        })
+    },
+    insert: function (type, value) {
+        return new Promise((resolve, reject) => {
+            con.query(INSERT[type], value, (err, res) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(JSON.parse(JSON.stringify(res)));
             });
         })
     },

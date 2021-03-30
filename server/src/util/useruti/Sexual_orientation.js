@@ -1,10 +1,10 @@
 const isEmpty = require('../func/isEmpty')
 
-const isOrient = (interest) => {
+const isOrient = (sexOrient) => {
 
-    if(isEmpty(interest))
+    if(isEmpty(sexOrient))
         return false
-    if(interest !== 'men' && interest !== 'women' && interest !== 'both')
+    if(sexOrient !== 'men' && sexOrient !== 'women' && sexOrient !== 'both')
         return false
     return true
 }

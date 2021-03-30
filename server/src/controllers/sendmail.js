@@ -4,13 +4,13 @@ module.exports = {
         var tr = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'camagru.izouiten@gmail.com',
-                pass: 'zouiten123456'
+                user: 'matcha.oessafi.2021@gmail.com',
+                pass: '12345Matcha'
             }
         });
         const url = `http://localhost:3000/confirme/${token}`;
         var mailSending = {
-            from: 'camagru.izouiten@gmail.com',
+            from: 'matcha.oessafi.2021@gmail.com',
             to: email,
             subject: 'Confirm your account',
             html: `<p>Please click to verify your email</p><span style="background-color:#16C79A"><a href="${url}" >Click me</a></span>`
@@ -27,13 +27,13 @@ module.exports = {
         var tr = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'camagru.izouiten@gmail.com',
-                pass: 'zouiten123456'
+                user: 'matcha.oessafi.2021@gmail.com',
+                pass: '12345Matcha'
             }
         });
         const url = `http://localhost:3000/resetPassword/${token}`;
         var mailSending = {
-            from: 'camagru.izouiten@gmail.com',
+            from: 'matcha.oessafi.2021@gmail.com',
             to: email,
             subject: 'Reset your password',
             html: `<p>Please click to verify your email</p><span style="background-color:#16C79A"><a href="${url}" >Click me</a></span>`

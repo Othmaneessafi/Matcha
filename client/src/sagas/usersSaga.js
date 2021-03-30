@@ -1,6 +1,8 @@
 import { put, takeLatest, call } from "redux-saga/effects";
+import {push} from "react-router-redux";
 import { select } from "redux-saga/effects";
 import { request } from "./helper";
+import socket from '../socketConn';
 import {
   getUsersSuccess,
   getUsersError,
@@ -21,7 +23,7 @@ export const getUsers = function* getUsers(data) {
       request,
       {
         url: "http://localhost:3001/getUsers",
-        data: { id: user.id, filtre: data.filtre, index: data.index },
+        data: { id: user.id, filtre: data.filtre, indice: data.index },
         method: "post",
       },
       token
@@ -46,7 +48,7 @@ export const sortUsers = function* sortUsers({ methode, route, index }) {
       request,
       {
         url: "http://localhost:3001/sortUsers",
-        data: { id: user.id, methode: methode, route: route, index: index },
+        data: { id: user.id, methode: methode, route: route, indice: index },
         method: "post",
       },
       token
@@ -124,7 +126,7 @@ export const getBlockUser = function* getBlockUser() {
   }
 };
 export const likeUser = function* likeUser({ liked_user_id }) {
-  try {
+  try {    
     const user = yield select((state) => state.user);
     const token = yield select((state) => state.user.token);
     const response = yield call(
@@ -146,7 +148,7 @@ export const likeUser = function* likeUser({ liked_user_id }) {
         username: user.username,
         profilePic: user.profilePic,
       };
-      // socket.emit('userLiked', {by: by, receiver: parseInt(liked_user_id), content: `${user.username} liked you`});
+      socket.emit('userLiked', {by: by, receiver: parseInt(liked_user_id), content: `${user.username} liked you`});
       yield put(deleteUser(liked_user_id));
     }
   } catch (error) {}
@@ -174,7 +176,7 @@ export const dislikeUser = function* dislikeUser({ dislike_user_id }) {
         username: user.username,
         profilePic: user.profilePic,
       };
-      // socket.emit('userUnliked', {by: by, receiver: parseInt(dislike_user_id), content: `${user.username} unliked you`});
+      socket.emit('userUnliked', {by: by, receiver: parseInt(dislike_user_id), content: `${user.username} unliked you`});
       yield put(deleteLike(dislike_user_id));
     }
   } catch (error) {}
@@ -243,7 +245,7 @@ export const viewProfileUser = function* viewProfileUser({ viewed_user_id }) {
         username: user.username,
         profilePic: user.profilePic,
       };
-      // socket.emit('profileViewed', {by: by, receiver: parseInt(viewed_user_id), content: `${user.username} viewed your profile`});
+      socket.emit('profileViewed', {by: by, receiver: parseInt(viewed_user_id), content: `${user.username} viewed your profile`});
     }
   } catch (error) {
     console.log(error);
@@ -291,8 +293,29 @@ export const getLikedBy = function* getLikedBy() {
   }
 };
 
+export const resetSteps = function* resetSteps() {
+  try {
+    const user = yield select((state) => state.user);
+    const token = yield select((state) => state.user.token);
+    const response = yield call(
+      request,
+      {
+        url: "http://localhost:3001/resetStep",
+        data: { id: user.id },
+        method: "post",
+      },
+      token
+    );
+    if (response) {
+      yield put(push("/infos"));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export default function* () {
+
+export default function* users() {
   yield takeLatest("GET_USERS", getUsers);
   yield takeLatest("BLOCK_USER", blockUser);
   yield takeLatest("DEBLOCK_USER", deblockUser);
@@ -306,4 +329,5 @@ export default function* () {
   yield takeLatest("SORT_USERS", sortUsers);
   yield takeLatest("GET_VP_LIST", getViewProfileList);
   yield takeLatest("GET_LIKED_BY", getLikedBy);
+  yield takeLatest("RESET_STEP", resetSteps);
 }

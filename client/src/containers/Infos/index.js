@@ -1,79 +1,43 @@
-import Infos from "../../components/infos/userInfos";
-import { InfosAction, createTag } from "../../actions/infosAction";
+import React, { useEffect } from 'react';
+import Stepper from '../../components/infos/userInfos';
+import { getTags, add_Location } from '../../actions/infosAction';
+import { getPic } from '../../actions/uploadAction';
 import { connect } from "react-redux";
-import { reduxForm } from "redux-form";
+import { decStep, incStep } from '../../actions/stepAction';
 
-const validate = (values) => {
-  const errors = {};
-  const requiredFields = [
-    "first_name",
-    "last_name",
-    "bio",
-    "birth",
-    "gender",
-    "intrest",
-  ];
+const StepInfo = (props) => {
+    const { user, images, getPic, getTags, decStep, incStep, add_Location } = props;
+    useEffect(() => {
+        if (user) {
+            getPic(user.id);
+            getTags();
+        }
+    }, [getTags, user, getPic]);
 
-  const requiredArr = ["tags"];
-
-  const Age = (birthday) => {
-    let today = new Date();
-    let birthDate = new Date(birthday);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    let m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
+    const handleBack = () => {
+        decStep();
     }
-    return age;
-  };
-
-  requiredFields.forEach((field) => {
-    if (!values[field] || !values[field].trim()) {
-      errors[field] = "Required !";
+    const handleNext = () => {
+        if (user.step === 2)
+            add_Location({ lat: user.lat, lng: user.lng });
+        incStep();
     }
-  });
-  if (values.first_name && !/^[a-z0-9_-\s]{2,20}$/.test(values.first_name))
-    errors.first_name =
-      'first name can contain 2-20 characters, letters (a-z), numbers, "_" and "-"';
-  if (values.last_name && !/^[a-z0-9_-\s]{2,20}$/.test(values.last_name))
-    errors.last_name =
-      'Username can contain 2-20 characters, letters (a-z), numbers, "_" and "-"';
-  const age = Age(values.birthday);
-  if (age < 18) errors.birthday = "You are too older to be here";
-  if (age > 120) errors.birthday = "You are too older to be here";
-  return errors;
-};
+    return (
+        <Stepper handleBack={handleBack} handleNext={handleNext} user={user} images={images} />
+    )
+}
 
-const mapStateToProps = (state) => ({
-  form: state.form,
-  status: state.infos.status,
-  error: state.infos.error,
-  Tags: state.infos.selectTags,
-  loadingTags: state.infos.selectLoading,
-  erroTags: state.infos.error,
-});
+const mapStateToProps = (state) => (
+    {
+        "user": state.user,
+        "images": state.images,
+    });
 const mapDispatchToProps = {
-  infosAction: InfosAction,
-  createTag: createTag,
+    "getTags": getTags,
+    "getPic": getPic,
+    "decStep": decStep,
+    "incStep": incStep,
+    "add_Location": add_Location,
 };
-const mergeProps = (stateProps, dispatchProps, otherProps) => ({
-  ...stateProps,
-  ...dispatchProps,
-  ...otherProps,
-  handleSubmit: otherProps.handleSubmit((form) => {
-    dispatchProps.infosAction(form);
-  }),
-});
 
-const connectedProfileContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  mergeProps
-)(Infos);
-
-const ProfileContainer = reduxForm({
-  form: "profile",
-  validate,
-})(connectedProfileContainer);
-
-export default ProfileContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(StepInfo);

@@ -1,7 +1,16 @@
 .BrowsingContainer {
-    position: absolute;
-    left: 100px;
-    top: 150px;
-    height: auto;
-    padding: 5px;
+  position: absolute;
+  top: 120px;
+  /* height: 100vh !important; */
+  width: 100vw;
+  padding: 30px;
+}
+
+@media screen and (max-width: 500px) {
+  .BrowsingContainer {
+    top: 200px;
+  }
+  .filterBtn {
+      margin-top: 5px!important;
+  }
 }

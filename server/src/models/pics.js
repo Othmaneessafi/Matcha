@@ -26,7 +26,6 @@ module.exports = {
     getPics : function (user_id) {
         return new Promise ((resolve, reject) => { 
             con.query(SELECT.GetPics, [user_id],(err,res) => {
-                // console.log("mochikla hakki")
                 if(err)
                     reject(err);
                 else

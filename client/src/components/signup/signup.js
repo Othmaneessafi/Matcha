@@ -9,7 +9,6 @@ import renderField from '../shared/TextField';
 
 export default function signup(props) {
   const {handleSubmit} = props;
-  console.log(props);
   return (
     <>
       <Grid
@@ -18,7 +17,7 @@ export default function signup(props) {
         justify="center"
         alignItems="center"
       >
-        <Grid item xs={7} container className="logupContainer">
+        <Grid item xs={11} lg={7} container className="logupContainer">
           <Grid
             item
             container
@@ -38,6 +37,30 @@ export default function signup(props) {
               alignItems="center"
             >
               <h1 className="logo">MATCHA</h1>
+              <Field
+                name="firstname"
+                className="logupInput"
+                color="secondary"
+                InputProps={{ className: "loginInput" }}
+                InputLabelProps={{ className: "loginInputLabel" }}
+                component={renderField}
+                label="First Name"
+                type="text"
+                rows='1'
+
+              />   
+              <Field
+                name="lastname"
+                className="logupInput"
+                color="secondary"
+                InputProps={{ className: "loginInput" }}
+                InputLabelProps={{ className: "loginInputLabel" }}
+                component={renderField}
+                label="Last Name"
+                type="text"
+                rows='1'
+
+              />   
               <Field
                 name="username"
                 className="logupInput"
